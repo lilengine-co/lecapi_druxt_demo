@@ -29,7 +29,12 @@ export default {
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
+    'druxt-site'
   ],
+
+  druxt: {
+    baseUrl: 'https://content.lilengine.co'
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
