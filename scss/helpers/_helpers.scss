@@ -1,0 +1,134 @@
+// Texts
+.text {
+  &--center {
+    text-align: center;
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--right {
+    text-align: right;
+  }
+
+  // Dark Colors
+  &--dark {
+    color: $text-color;
+  }
+
+  // Light Colors
+  &--white {
+    color: $white;
+
+    a {
+      @extend %link--white;
+    }
+  }
+}
+
+// Backgrounds
+.bg {
+  // Dark backgrounds
+  &--primary {
+    background-color: $primary-color;
+  }
+
+  // Light backgrounds
+  &--white {
+    background-color: $white;
+  }
+
+  &--gray-full {
+    background-color: $gray-f1;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      content: "";
+      background-color: $gray-f1;
+      left: -50vw;
+      right: -50vw;
+      // width: 100vw;
+      // transform: translateX(-50%);
+    }
+
+    > * {
+      position: relative;
+    }
+  }
+}
+
+.underline,
+%underline {
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background-color: $yellow;
+  }
+}
+
+%text-small,
+.text-small {
+  font-size: 14px;
+}
+
+.text-large {
+  font-size: 20px;
+}
+
+// Comparison template
+.style-comparison {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+
+  > div {
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 30px);
+    }
+  }
+
+  h4 {
+    position: relative;
+    display: inline-block;
+
+    &:before {
+      content: "";
+      background-color: $yellow;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      height: 2px;
+      left: 0;
+    }
+  }
+}
+
+// breakout grey
+.breakout-grey {
+  background: #eee;
+  padding: 12px 15px;
+}
+
+%box-shadow,
+.box-shadow {
+  transition: box-shadow 0.3s;
+  box-shadow: 0 6px 10px $gray-f1;
+
+  &:hover {
+    box-shadow: 0 6px 30px $gray-d7;
+  }
+}

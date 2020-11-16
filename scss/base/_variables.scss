@@ -1,0 +1,31 @@
+// VARIABLES
+// Define all variables (aside from colors) in this document. This includes breakpoint, sizes, etc.
+
+// Mobile
+$mobileOnly: 767px;
+$mobilePortraitOnly: 479px;
+$mobilePortrait: 360px;
+$mobileLandScape: 480px;
+$mobile: 480px;
+$sm: $mobile;
+
+// Tablet
+$tablet: 768px;
+$tabletOnly: 1023px;
+$md: $tablet;
+
+// Desktop
+$desktop: 1024px;
+$desktopWide: 1280px;
+$desktopWideLarge: 1366px;
+$desktopSupperWide: 1440px;
+$desktopSupperWideLarge: 1920px;
+$lg: $desktop;
+$xl: $desktopSupperWide;
+
+//Font variables
+$base-font-size: 16px;
+$base-line-height: 1.3;
+
+// Add global paths
+$image-path: "../../images/";

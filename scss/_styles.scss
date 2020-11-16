@@ -1,0 +1,26 @@
+@charset 'UTF-8';
+// STYLES-MAIN.SCSS
+// Variables
+@import "base/variables";
+@import "base/colors";
+//Helpers functions
+@import "helpers/functions";
+@import "helpers/mixins";
+// Reset
+@import "base/reset";
+//Base
+@import "base/fonts";
+@import "base/icons";
+@import "base/grid";
+@import "base/extends";
+@import "base/typography";
+@import "base/btn";
+@import "base/form";
+@import "base/table";
+//Helpers classes
+@import "helpers/helpers";
+// Vendors
+// Grid
+// @import "vendors/grid/gridlex";
+// Print
+// @import "base/print";

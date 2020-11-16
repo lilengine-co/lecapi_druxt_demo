@@ -1,0 +1,78 @@
+%btn,
+.btn {
+  @include opensans;
+  // appearance: none;
+  background-image: none;
+  box-shadow: none;
+  display: inline-block;
+  font-size: 16px;
+  line-height: 1;
+  min-width: rem(100px);
+  outline: none;
+  padding: 14px 24px 13px;
+  text-align: center;
+  text-shadow: none;
+  transition: all .5s ease;
+  background-color: $yellow;
+  border: 0;
+  border-bottom: 1px solid $yellow;
+  color: $text-color;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 0 0 1px $yellow;
+  &:active,
+  &:hover,
+  &:focus {
+    color: $text-color;
+    border-bottom: 5px solid $black;
+    transition: all .5s ease;
+    padding-bottom: 9px;
+  }
+  &:focus {
+    border-color: $black;
+  }
+  &--white-bg {
+    @extend .btn;
+    background-color: $white;
+    border-color: $white;
+    box-shadow: 0 0 0 1px $black;
+    color: $text-color !important;
+    text-decoration: none !important;
+    &:active,
+    &:hover,
+    &:focus {
+      border-color: $yellow;
+    }
+  }
+  &--back-to-top {
+    @extend .btn;
+    background-color: $light-gray;
+    border-color: $light-gray;
+    box-shadow: 0 0 0 1px $light-gray;
+    padding: 10px 20px 9px;
+    font-size: 14px;
+    &:after {
+      @extend %icons;
+      content: "\e926";
+      position: relative;
+      top: 1px;
+      font-size: 14px;
+      left: 1px;
+    }
+    &:active,
+    &:hover,
+    &:focus {
+      border-color: $black;
+      padding-bottom: 5px;
+    }
+  }
+}
+
+.button-yellow-large {
+  @extend .btn;
+}
+
+.button-blue-large {
+  @extend .btn--white-bg;
+}

@@ -1,0 +1,31 @@
+// Grid variables
+$containerMarginMobile: 20px;
+$containerMarginTablet: 40px;
+$container: 960px;
+$containerWide: 1180px;
+$containerSuperWide: 1280px;
+
+.container {
+  max-width: 100%;
+  margin-left: $containerMarginMobile;
+  margin-right: $containerMarginMobile;
+
+  @media (min-width: $tablet) {
+    margin-left: $containerMarginTablet;
+    margin-right: $containerMarginTablet;
+  }
+
+  @media (min-width: $desktop) {
+    max-width: $container;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (min-width: $desktopWide) {
+    max-width: $containerWide;
+  }
+
+  @media (min-width: $desktopSupperWide) {
+    max-width: $containerSuperWide;
+  }
+}
