@@ -27,15 +27,30 @@ export default {
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
+    '@nuxtjs/fontawesome'
   ],
+
+  fontawesome: {
+    icons: {
+      solid: true,
+      brands: true
+    }
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
-    'druxt-site'
+    'druxt-site',
+    '@nuxtjs/style-resources'
   ],
 
   druxt: {
     baseUrl: 'https://content.lilengine.co'
+  },
+
+  styleResources: {
+    scss: [
+      './scss/styles.scss',
+    ]
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
