@@ -1,11 +1,8 @@
 <template>
   <div>
     <div class="markup-block">
-      <div class="container">
-        <slot name="subtitle"/>
-        <div class="markup__html" v-html="fields._markup.data.value">
-        </div>
-      </div>
+      <h2>This is the Markup paragraph from Vue template</h2>
+      <slot/>
     </div>
   </div>
 </template>
@@ -18,7 +15,4 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.markup {
-  background: $gray;
-}
 </style>
