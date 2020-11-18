@@ -1,10 +1,12 @@
 <template>
   <div>
     <div class="subtitle-block">
-      <h3>
-        <NuxtLink :to="'#' + to">{{ fields._heading.data }}
-        <font-awesome-icon icon="link"/></NuxtLink>
-      </h3>
+      <div class="container">
+        <h3>
+          <NuxtLink :to="'#' + to">{{ fields._heading.data }}
+          <font-awesome-icon icon="link"/></NuxtLink>
+        </h3>
+      </div>
     </div>
   </div>
 </template>
@@ -30,8 +32,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-  // @import '../../../scss/styles';
-
   .subtitle {
     &-block {
       background-color: $red;
