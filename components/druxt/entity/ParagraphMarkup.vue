@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="markup-block block-space">
+    <div class="markup-block py-16">
       <div class="container mx-auto">
         <slot name="subtitle"/>
         <div class="markup__html" v-html="fields._markup.data.value">
@@ -17,8 +17,3 @@ export default {
   mixins: [DruxtEntityMixin]
 }
 </script>
-<style lang="scss" scoped>
-.markup {
-  background: $gray;
-}
-</style>
