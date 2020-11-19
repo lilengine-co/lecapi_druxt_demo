@@ -21,14 +21,14 @@ import { mapActions } from 'vuex'
 export default {
   mixins: [DruxtEntityMixin],
   async fetch() {
-    for (const delta in this.fields.items.data.data) {
+    for (const delta in this.fields.items.data.data) { // get fields.items.data.data... from Detected Vue tool --> data
       const item = this.fields.items.data.data[delta]
       const result = await this.getEntity({ id: item.id, type: item.type })
       if (!this.sequences) this.sequences = []
       this.sequences[delta] = {
         props: false,
-        heading: result.attributes._heading,
-        content: result.attributes._markup.value
+        heading: result.attributes._heading, // get result.attributes._heading... from Detected Vue tool --> attributes
+        content: result.attributes._markup.value // get result.attributes._markup.value... from Detected Vue tool --> attributes
       }
     }
   },
