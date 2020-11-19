@@ -50,7 +50,7 @@ export default {
 
   styleResources: {
     scss: [
-      './scss/styles.scss',
+      './assets/scss/styles.scss',
     ]
   },
 

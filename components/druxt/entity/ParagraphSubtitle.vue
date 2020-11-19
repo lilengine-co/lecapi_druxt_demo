@@ -1,11 +1,13 @@
 <template>
   <div>
-    <div class="subtitle-block">
-      <h3 class="subtitle__title">
+    <div class="subtitle-block mb-1">
+      <h3 class="subtitle__title text-3xl font-semibold">
         <NuxtLink  class="subtitle__link" :to="'#' + to">
           {{ fields._heading.data }}
         </NuxtLink>
-        <font-awesome-icon @click="copyUrl" title="Click to copy the link" class="subtitle__icon" icon="link"/>        
+        <span @click="copyUrl" title="Click to copy the link" class="transition cursor-pointer text-sm duration-500 ease-in-out subtitle__icon opacity-10 hover:opacity-70">
+          <font-awesome-icon icon="link"/>
+        </span>
       </h3>
     </div>
   </div>
@@ -58,23 +60,6 @@ export default {
       &:hover {
         text-decoration: underline;
       }
-    }
-
-    &__title {
-      &:hover {
-        .subtitle {
-          &__icon {
-            opacity: 0.7;
-          }
-        }
-      }
-    }
-
-    &__icon {
-      cursor: pointer;
-      font-size: 0.7em;
-      transition: opacity 0.3s;
-      opacity: 0;
     }
   }
 </style>
