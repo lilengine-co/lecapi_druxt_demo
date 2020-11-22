@@ -1,8 +1,24 @@
 <template>
   <div>
-    <Nuxt />
+    <druxt-block-region name="header" :theme="theme" />
+      <Nuxt />
+    <druxt-block-region name="footer" :theme="theme" />
   </div>
 </template>
+
+<script>
+export default {
+  data: () => ({
+    theme: 'legin'
+  }),
+
+  computed: {
+    isHomePath() {
+      return !!this.$store.state.druxtRouter.route.isHomePath
+    },
+  },
+}
+</script>
 
 <style>
 html {
