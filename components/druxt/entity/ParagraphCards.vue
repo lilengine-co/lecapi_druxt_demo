@@ -3,14 +3,15 @@
     <div class="card-block px-16">
       <div class="container mx-auto">
         <slot name="subtitle"/>
-        <slot name="items"/>
-        <ul class="card__list">
-          <li class="card__item my-6" v-for="card in cards" :key="card.id">
-            <h3 class="text-2xl font-semibold">{{ card.heading }}</h3>
-            <div class="markup__html" v-html="card.content"></div>
-            <NuxtLink v-if="card.link" class="button bg-blue-900 hover:bg-red-600 subtitle__link" :to="card.link.uri">
-              {{ card.link.text }}
-            </NuxtLink>
+        <ul class="card__list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <li class="card__item" v-for="card in cards" :key="card.id">
+            <div class="card bg-gray-200 rounded-xl p-2 sm:p-5 xl:p-6">
+              <h3 class="text-2xl font-semibold mb-6">{{ card.heading }}</h3>
+              <div class="markup__html" v-html="card.content"></div>
+              <NuxtLink v-if="card.link" class="button bg-blue-900 hover:bg-red-600 subtitle__link" :to="card.link.uri">
+                {{ card.link.text }}
+              </NuxtLink>
+            </div>
           </li>
         </ul>
       </div>
@@ -57,7 +58,6 @@ export default {
         content: content,
         link: link
       }
-      console.log(this.cards)
     }
   },
   data: () => ({

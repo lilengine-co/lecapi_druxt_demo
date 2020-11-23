@@ -34,7 +34,7 @@ export default {
   methods: {
     copyUrl() {
       const el = document.createElement('textarea');
-      el.value = window.location.origin + '/' + this.$route.path + '#' + this.to;                                 
+      el.value = window.location.origin + this.$route.path + '#' + this.to;                                 
       el.setAttribute('readonly', '');                
       el.style.position = 'absolute';                     
       el.style.left = '-9999px';                      
