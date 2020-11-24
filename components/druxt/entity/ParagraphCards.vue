@@ -29,25 +29,33 @@ export default {
     for (const delta in this.fields.items.data.data) { // get fields.items.data.data... from Detected Vue tool --> data
       const item = this.fields.items.data.data[delta]
       const result = await this.getEntity({ id: item.id, type: item.type })
-      let link = false;
+      let link = false
       let heading = result.attributes._heading
       let content = result.attributes_markup ? result.attributes._markup : ''
       let linkObj = result.attributes._link
 
       if (linkObj) {
-        const linkText = linkObj.text;
-        console.log('linkText: ' + linkText);
-        const linkUri = linkObj.uri.replace('entity:','');
-        const route = await this.getRoute(linkUri)
+        let linkText = linkObj.text
+        let linkUri = linkObj.uri
+        let linkLabel = linkText ? linkText : linkUri
+        // Todo: Implemented the <front> page
+        if(linkUri.includes("entity:")) {
+          const linkEntity = linkUri.replace(/entity:/gi,'')
+          const route = await this.getRoute(linkEntity)
+          const util = require('util')
+          console.log(util.inspect(route, false, null, true))
 
-        let nodeId = route.props.uuid;
-        let nodeType = route.props.type;
-        
-        const entity = await this.getEntity({ id: nodeId, type: nodeType })
+          let nodeId = route.props.uuid;
+          let nodeType = route.props.type;
+          
+          const entity = await this.getEntity({ id: nodeId, type: nodeType })
+          linkLabel = linkText ? linkText : entity.attributes.title
+          linkUri = entity.attributes.path.alias
+        }
 
         link = {
-          uri: entity.attributes.path.alias,
-          text: linkText ? linkText : entity.attributes.title
+          uri: linkUri,
+          text: linkLabel
         }
       }
 
