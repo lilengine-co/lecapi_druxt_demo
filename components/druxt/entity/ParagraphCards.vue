@@ -6,9 +6,10 @@
         <ul class="card__list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <li class="card__item" v-for="card in cards" :key="card.id">
             <div class="card bg-gray-200 rounded-xl p-2 sm:p-5 xl:p-6">
-              <h3 class="text-2xl font-semibold mb-6">{{ card.heading }}</h3>
-              <div class="markup__html" v-html="card.content"></div>
-              <NuxtLink v-if="card.link" class="button bg-blue-900 hover:bg-red-600 subtitle__link" :to="card.link.uri">
+              <img class="card__image mb-2" v-bind:src="'https://content.lilengine.co/' + card.image" />
+              <h3 class="card__title text-2xl font-semibold mb-6">{{ card.heading }}</h3>
+              <div class="card__content markup__html" v-html="card.content"></div>
+              <NuxtLink v-if="card.link" class="button bg-blue-900 hover:bg-red-600 card__link" :to="card.link.uri">
                 {{ card.link.text }}
               </NuxtLink>
             </div>
@@ -26,10 +27,25 @@ import { mapActions } from 'vuex'
 export default {
   mixins: [DruxtEntityMixin],
   async fetch() {
+    const util = require('util')
+
     for (const delta in this.fields.items.data.data) { // get fields.items.data.data... from Detected Vue tool --> data
       const item = this.fields.items.data.data[delta]
       const result = await this.getEntity({ id: item.id, type: item.type })
       let link = false
+      let imageUrl = false
+
+      if(result.relationships._media) {
+        const media = result.relationships._media.data
+        const imageObj = await this.getResource(media)
+        const image = await this.getResource(
+          imageObj.relationships.media_image.data
+        )
+
+        imageUrl = image.attributes.uri.url
+        // console.log(util.inspect(image, false, null, true))
+      }
+
       let heading = result.attributes._heading
       let content = result.attributes_markup ? result.attributes._markup : ''
       let linkObj = result.attributes._link
@@ -42,8 +58,6 @@ export default {
         if(linkUri.includes("entity:")) {
           const linkEntity = linkUri.replace(/entity:/gi,'')
           const route = await this.getRoute(linkEntity)
-          const util = require('util')
-          console.log(util.inspect(route, false, null, true))
 
           let nodeId = route.props.uuid;
           let nodeType = route.props.type;
@@ -64,7 +78,8 @@ export default {
         props: false,
         heading: heading,
         content: content,
-        link: link
+        link: link,
+        image: imageUrl
       }
     }
   },
@@ -74,7 +89,8 @@ export default {
   methods: {
     ...mapActions({
       getEntity: 'druxtRouter/getEntity',
-      getRoute: 'druxtRouter/getRoute'
+      getRoute: 'druxtRouter/getRoute',
+      getResource: 'druxtRouter/getEntity',
     })
   }
 }
