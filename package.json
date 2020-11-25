@@ -6,7 +6,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "nuxt build && nuxt start"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^5.15.1",
