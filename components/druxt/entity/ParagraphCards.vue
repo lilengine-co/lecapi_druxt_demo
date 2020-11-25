@@ -6,7 +6,7 @@
         <ul class="card__list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <li class="card__item" v-for="card in cards" :key="card.id">
             <div class="card bg-gray-200 rounded-xl p-2 sm:p-5 xl:p-6">
-              <img class="card__image mb-2" v-bind:src="'https://content.lilengine.co/' + card.image" />
+              <img class="card__image mb-2" v-bind:src="card.image" />
               <h3 class="card__title text-2xl font-semibold mb-6">{{ card.heading }}</h3>
               <div class="card__content markup__html" v-html="card.content"></div>
               <NuxtLink v-if="card.link" class="button bg-blue-900 hover:bg-red-600 card__link" :to="card.link.uri">

@@ -41,17 +41,22 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     'druxt-site',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/proxy'
   ],
 
   druxt: {
-    baseUrl: 'https://content.lilengine.co'
+    baseUrl: process.env.BASE_URL
   },
 
   styleResources: {
     scss: [
       './assets/scss/styles.scss',
     ]
+  },
+
+  proxy: {
+    '/sites/default/files': process.env.BASE_URL
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
