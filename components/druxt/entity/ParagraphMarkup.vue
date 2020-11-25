@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="markup-block py-16">
+    <div class="markup-block block-space bg-gray-200">
       <div class="container mx-auto">
         <slot name="subtitle"/>
         <div class="markup__html" v-html="fields._markup.data.value">

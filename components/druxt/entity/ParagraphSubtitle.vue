@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="subtitle-block mb-1">
+    <div class="subtitle-block mb-4">
       <h3 class="subtitle__title text-3xl font-semibold">
         <NuxtLink  class="subtitle__link" :to="'#' + to">
           {{ fields._heading.data }}

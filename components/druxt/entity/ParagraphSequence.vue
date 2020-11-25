@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="sequence-block px-16">
+    <div class="sequence-block block-space">
       <div class="container mx-auto">
         <slot name="subtitle"/>
         <ul class="sequence__list">
-          <li class="sequence__item my-6" v-for="sequence in sequences" :key="sequence.id">
+          <li class="sequence__item mb-6" v-for="sequence in sequences" :key="sequence.id">
             <h3 class="text-2xl font-semibold">{{ sequence.heading }}</h3>
             <div class="markup__html" v-html="sequence.content"></div>
           </li>
