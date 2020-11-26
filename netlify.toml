@@ -1,3 +1,4 @@
 [[redirects]]
   from = "/sites/default/files"
   to = "https://content.lilengine.co/sites/default/files"
+  force = true
