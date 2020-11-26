@@ -8,7 +8,7 @@
             <div class="card bg-gray-200 h-full rounded-xl overflow-hidden">
               <div class="w-full h-48 bg-center bg-cover" v-bind:style="'background-image:url(' + card.image + ')'"></div>
               <div class="card__content p-5 xl:p-6">
-                <h3 class="card__title text-2xl font-semibold mb-6">{{ card.heading }}</h3>
+                <h3 class="card__title block__title">{{ card.heading }}</h3>
                 <div class="card__content markup__html" v-html="card.content"></div>
                 <NuxtLink v-if="card.link" class="button bg-blue-900 hover:bg-red-600 card__link" :to="card.link.uri">
                   {{ card.link.text }}

@@ -26,4 +26,8 @@
   .block-space {
     @apply p-8 mb-12;
   }
+
+  .block__title {
+    @apply text-2xl font-semibold mb-6;
+  }
 }
