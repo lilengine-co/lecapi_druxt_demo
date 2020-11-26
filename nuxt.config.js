@@ -64,6 +64,7 @@ export default {
   },
 
   buildDir: 'dist',
+  target: 'static',
   
   generate: {
     fallback: true
