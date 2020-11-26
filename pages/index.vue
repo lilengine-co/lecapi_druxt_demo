@@ -2,13 +2,13 @@
   <div>
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="bg-gray-50">
-      <div class="cta-block bg-center bg-cover relative bg-gradient-to-t from-black" v-bind:style="'background-image:url(https://ik.imagekit.io/q5edmtudmz/post1_fOFO9VDzENE.jpg)'">
-        <div class="bg-gradient-to-t w-screen h-screen from-black">
+      <div class="cta-block bg-center bg-cover w-screen h-screen relative bg-gradient-to-t from-black" v-bind:style="'background-image:url(https://ik.imagekit.io/q5edmtudmz/post1_fOFO9VDzENE.jpg)'">
+        <div class="bg-gradient-to-t absolute inset-0 from-black flex items-center">
           <div class="container mx-auto">
             <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
               <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                <span class="block">Ready to dive in?</span>
-                <span class="block text-indigo-600">A sample Druxt demo with API from Drupal.</span>
+                <span class="block text-white">Ready to dive in?</span>
+                <span class="block text-gray-400">A sample Druxt demo with API from Drupal.</span>
               </h2>
               <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                 <div class="inline-flex rounded-md shadow">
