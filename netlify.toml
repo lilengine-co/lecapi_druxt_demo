@@ -1,6 +1,0 @@
-[[redirects]]
-  from = "/sites/default/files"
-  to = "https://content.lilengine.co/sites/default/files"
-  status = 200
-  force = true
-  headers = {X-From = "Netlify"}

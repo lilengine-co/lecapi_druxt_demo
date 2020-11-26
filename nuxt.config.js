@@ -28,7 +28,8 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
     '@nuxtjs/fontawesome',
-    '@nuxtjs/tailwindcss'
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/netlify-files'
   ],
 
   fontawesome: {
@@ -57,6 +58,27 @@ export default {
 
   proxy: {
     '/sites/default/files': process.env.BASE_URL
+  },
+
+  netlifyFiles: {
+    netlifyToml: {
+      build: {
+        environment: { FOO: process.env.FOO }
+      },
+      headers: [
+        {
+          for: '/*',
+          values: { 'X-XSS-Protection': '1; mode=block' }
+        }
+      ],
+      redirects: [
+        {
+          from: '/sites/default/files',
+          to: 'https://content.lilengine.co/sites/default/files',
+          status: 302
+        }
+      ]
+    }
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
