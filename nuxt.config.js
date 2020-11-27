@@ -20,6 +20,9 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    {
+      src: '~/plugins/ledruxt'
+    }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -59,24 +62,6 @@ export default {
   proxy: {
     '/sites/default/files': process.env.BASE_URL
   },
-
-  // netlifyFiles: {
-  //   netlifyToml: {
-  //     headers: [
-  //       {
-  //         for: '/*',
-  //         values: { 'X-XSS-Protection': '1; mode=block' }
-  //       }
-  //     ],
-  //     redirects: [
-  //       {
-  //         from: '/sites/default/files',
-  //         to: 'https://content.lilengine.co/sites/default/files',
-  //         status: 302
-  //       }
-  //     ]
-  //   }
-  // },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

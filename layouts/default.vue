@@ -1,7 +1,9 @@
 <template>
   <div>
-    <druxt-block-region name="header" :theme="theme" />
-    <Nuxt />
+    <druxt-block-region name="header"  :theme="theme" />
+    <main>
+      <Nuxt />
+    </main>
     <druxt-block-region name="footer" :theme="theme" />
   </div>
 </template>
