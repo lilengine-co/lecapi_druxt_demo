@@ -53,7 +53,7 @@ export default {
         imageObj.relationships.media_image.data
       )
 
-      imageUrl = image.attributes.uri.url
+      imageUrl = process.env.BASE_URL + image.attributes.uri.url
       // console.log(util.inspect(image, false, null, true))
     }
     
