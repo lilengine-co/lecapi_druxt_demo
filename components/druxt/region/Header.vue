@@ -11,16 +11,15 @@
                   <img class="h-8 w-8" src="https://www.lilengine.co/sites/default/files/2017-08/mono-green-white_0.svg" alt="LilEngine website">
                 </a>
               </div>
-              <div class="block">
-                <div class="ml-10 flex items-baseline space-x-4">
-                  <a href="/lilengine-demo/basic-page/demo-page#sequence-subtitle" class="px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-gray-700">Demo page</a>
-                </div>
+              <div class="block main-menu">
+                <DruxtBlockSystemMenuBlockMain />
               </div>
             </div>
           </div>
         </div>
       </div>
     </nav>
+    
 
     <!-- <header class="bg-white shadow">
       <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">

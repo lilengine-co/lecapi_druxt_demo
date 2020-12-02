@@ -4,14 +4,14 @@
     <main>
       <Nuxt />
     </main>
-    <druxt-block-region name="footer" :theme="theme" />
+    <!-- <druxt-block-region name="footer" :theme="theme" /> -->
   </div>
 </template>
 
 <script>
 export default {
   data: () => ({
-    theme: 'legin'
+    theme: 'legin',
   }),
 
   computed: {
