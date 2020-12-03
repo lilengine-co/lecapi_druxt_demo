@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="cta-block bg-center bg-cover relative" v-bind:style="'background-image:url(' + cta.image + ')'">
-      <div class="relative z-10 block-space text-white bg-gradient-to-t from-black">
+      <div class="relative z-1 block-space text-white bg-gradient-to-t from-black">
         <div class="container mx-auto">
           <h2 class="cta__title block__title">{{ cta.title }}</h2>
           <div class="cta__text" v-html="cta.text"></div>

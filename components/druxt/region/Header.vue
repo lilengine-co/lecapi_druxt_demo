@@ -1,6 +1,6 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div>
+  <div class="relative z-10">
     <nav class="bg-gray-800">
       <div class="container mx-auto">
         <div class="max-w-7xl mx-auto">

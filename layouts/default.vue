@@ -1,6 +1,6 @@
 <template>
   <div>
-    <druxt-block-region name="header"  :theme="theme" />
+    <druxt-block-region name="header"  :theme="theme" class="relative z-10"/>
     <main>
       <Nuxt />
     </main>
