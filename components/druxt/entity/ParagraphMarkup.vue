@@ -17,3 +17,8 @@ export default {
   mixins: [DruxtEntityMixin]
 }
 </script>
+<style lang="scss" scoped>
+  * {
+    box-sizing: border-box;
+  }
+</style>

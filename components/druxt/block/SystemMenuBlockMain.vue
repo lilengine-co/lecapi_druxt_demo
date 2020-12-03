@@ -10,12 +10,15 @@
       <template #parent="{ item: { entity, children } }">
         <div :text="entity.attributes.title">
           <druxt-menu-item :item="{ entity, children: [] }" />
-
-          <druxt-menu-item
-            v-for="item in children"
-            :key="item.entity.id"
-            :item="item"
-          />
+          <ul class="item__lists">
+            <druxt-menu-item
+              component="li"
+              class="item__list"
+              v-for="item in children"
+              :key="item.entity.id"
+              :item="item"
+            />
+          </ul>
         </div>
       </template>
     </druxt-menu>

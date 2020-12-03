@@ -1,0 +1,19 @@
+.button {
+  @apply px-3 py-2 text-sm font-medium rounded-md text-white shadow-sm bg-blue-900 inline-block mt-6 hover:bg-red-600;
+
+  &--action {
+    @apply bg-indigo-600;
+  }
+
+  &--success {
+    @apply bg-gray-600;
+  }
+}
+
+.button--warning {
+  @apply bg-pink-600;
+}
+
+.button--warning:hover {
+  @apply bg-pink-500;
+}

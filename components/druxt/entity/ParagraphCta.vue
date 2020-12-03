@@ -5,7 +5,7 @@
         <div class="container mx-auto">
           <h2 class="cta__title block__title">{{ cta.title }}</h2>
           <div class="cta__text" v-html="cta.text"></div>
-          <NuxtLink v-if="cta.link" class="button bg-blue-900 inline-block mt-6 hover:bg-red-600 card__link" :to="cta.link.uri">
+          <NuxtLink v-if="cta.link" class="button card__link" :to="cta.link.uri">
             {{ cta.link.label }}
           </NuxtLink>
         </div>
@@ -82,4 +82,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+  * {
+    box-sizing: border-box;
+  }
 </style>

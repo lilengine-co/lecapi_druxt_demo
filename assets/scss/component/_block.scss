@@ -1,0 +1,9 @@
+.block {
+  &-space {
+    @apply p-8 mb-12;
+  }
+
+  &__title {
+    @apply text-2xl font-semibold mb-6;
+  }
+}

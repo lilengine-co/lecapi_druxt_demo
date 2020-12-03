@@ -10,7 +10,7 @@
               <div class="card__content p-5 xl:p-6">
                 <h3 class="card__title block__title">{{ card.heading }}</h3>
                 <div class="card__content markup__html" v-html="card.content"></div>
-                <NuxtLink v-if="card.link" class="button bg-blue-900 hover:bg-red-600 card__link" :to="card.link.uri">
+                <NuxtLink v-if="card.link" class="button card__link" :to="card.link.uri">
                   {{ card.link.text }}
                 </NuxtLink>
               </div>
@@ -97,3 +97,8 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+  * {
+    box-sizing: border-box;
+  }
+</style>

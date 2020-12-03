@@ -6,3 +6,10 @@
 //Helpers functions
 @import "helpers/functions";
 @import "helpers/mixins";
+// Components
+
+@layer components {
+    @import "component/button";
+    @import "component/block";
+}
+
