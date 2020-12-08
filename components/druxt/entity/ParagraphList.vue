@@ -13,11 +13,11 @@
         </div>
         <div v-else-if="getVariant == 'accordion'" class="list--accordion">
           <div class="list__items">
-            <div class="list__item mb-2 bg-gray-100 p-5 rounded-md" :class="{'is-active': item.active}" v-for="(item, index) in items" :key="item.id">
-              <dt class="list__itemtitle">
-                <button @click="toggle(index)" class="accordion-item-trigger block relative hover:opacity-70 text-left w-full">
-                  <h3 class="text-xl font-semibold">{{ item.heading }}</h3>
-                  <font-awesome-icon :icon="['fas', 'chevron-circle-down']" :class="{'rotate-180 ': item.active}" class="list__icon transform transition duration-300 ease-in-out absolute right-0 top-1" />
+            <div class="list__item mb-2 rounded-md border border-gray-100" :class="{'is-active': item.active}" v-for="(item, index) in items" :key="item.id">
+              <dt class="list__title">
+                <button @click="toggle(index)" class="accordion-item-trigger block relative hover:opacity-70 text-left w-full px-5 py-2">
+                  <h3 class="text-lg font-semibold">{{ item.heading }}</h3>
+                  <font-awesome-icon :icon="['fas', 'chevron-circle-down']" :class="{'rotate-180 ': item.active}" class="list__icon transform transition duration-300 ease-in-out absolute right-3 top-4" />
                 </button>
               </dt>
               <transition
@@ -26,7 +26,7 @@
                 @after-enter="endTransition"
                 @before-leave="startTransition"
                 @after-leave="endTransition">
-                <dd v-if="item.active" class="accordion-item-details">
+                <dd v-if="item.active" class="accordion-item-details bg-gray-100 px-5 py-2">
                   <div class="markup__html opacity-70 pt-2" v-html="item.content"></div>
                 </dd>
               </transition>
