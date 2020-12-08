@@ -2,16 +2,23 @@
   <div>
     <div class="list-block block-space">
       <div class="container mx-auto">
-        <slot name="subtitle"/>
         <div v-if="getVariant == 'faq'" class="list--faq">
-          <ul class="grid md:grid-cols-2 md:gap-6 list__items">
-            <li class="list__item mb-6" v-for="item in items" :key="item.id">
-              <h3 class="text-2xl font-semibold">{{ item.heading }}</h3>
-              <div class="markup__html opacity-70" v-html="item.content"></div>
-            </li>
-          </ul>
+          <div class="flex flex-col md:flex-row">
+            <div class="md:w-1/4 md:pr-4">
+              <slot name="subtitle"/>
+            </div>
+            <div class="md:w-3/4 bg-gray-100 p-6 rounded-md">
+              <ul class="list__items">
+                <li class="list__item mb-6" v-for="item in items" :key="item.id">
+                  <h3 class="text-2xl font-semibold">{{ item.heading }}</h3>
+                  <div class="markup__html opacity-70" v-html="item.content"></div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div v-else-if="getVariant == 'accordion'" class="list--accordion">
+          <slot name="subtitle"/>
           <div class="list__items">
             <div class="list__item mb-2 rounded-md border border-gray-100" :class="{'is-active': item.active}" v-for="(item, index) in items" :key="item.id">
               <dt class="list__title">
@@ -34,6 +41,7 @@
           </div>
         </div>
         <div v-else class="list--default">
+          <slot name="subtitle"/>
           <ul v-bind:class="'list__items'">
             <li class="list__item mb-6" v-for="item in items" :key="item.id">
               <h3 class="text-2xl font-semibold">{{ item.heading }}</h3>
