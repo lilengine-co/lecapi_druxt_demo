@@ -17,7 +17,7 @@
               <dt class="list__itemtitle">
                 <button @click="toggle(index)" class="accordion-item-trigger block relative hover:opacity-70 text-left w-full">
                   <h3 class="text-xl font-semibold">{{ item.heading }}</h3>
-                  <font-awesome-icon :icon="['fas', 'chevron-circle-down']" class="list__icon absolute right-0 top-1" />
+                  <font-awesome-icon :icon="['fas', 'chevron-circle-down']" :class="{'rotate-180 ': item.active}" class="list__icon transform transition duration-300 ease-in-out absolute right-0 top-1" />
                 </button>
               </dt>
               <transition
@@ -98,10 +98,5 @@ export default {
 <style lang="scss" scoped>
   * {
     box-sizing: border-box;
-  }
-  .is-active {
-    .list__icon {
-      transform: rotateX(180deg);
-    }
   }
 </style>
