@@ -11,7 +11,7 @@
                 <h3 class="card__title block__title">{{ card.heading }}</h3>
                 <div class="card__content markup__html" v-html="card.content"></div>
                 <NuxtLink v-if="card.link" class="button card__link" :to="card.link.uri">
-                  {{ card.link.text }}
+                  See more
                 </NuxtLink>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default {
       }
 
       let heading = result.attributes._heading
-      let content = result.attributes_markup ? result.attributes._markup : ''
+      let content = result.attributes._markup
       let linkObj = result.attributes._link
 
       if (linkObj) {
@@ -58,20 +58,30 @@ export default {
         let linkLabel = linkText ? linkText : linkUri
         // Todo: Implemented the <front> page
         if(linkUri.includes("entity:")) {
+          const util = require('util')
           const linkEntity = linkUri.replace(/entity:/gi,'')
           const route = await this.getRoute(linkEntity)
 
-          let nodeId = route.props.uuid;
-          let nodeType = route.props.type;
+          let nodeId = route.props.uuid
+          let nodeType = route.props.type
           
           const entity = await this.getEntity({ id: nodeId, type: nodeType })
+          // console.log('entity: ')
+          // console.log(util.inspect(entity, false, null, true))
+          let desk = entity.attributes.deck ? entity.attributes.deck.value : ''
+
           linkLabel = linkText ? linkText : entity.attributes.title
+          content = content ? content : desk
           linkUri = entity.attributes.path.alias
         }
 
         link = {
           uri: linkUri,
           text: linkLabel
+        }
+
+        if(!heading) {
+          heading = linkLabel
         }
       }
 
