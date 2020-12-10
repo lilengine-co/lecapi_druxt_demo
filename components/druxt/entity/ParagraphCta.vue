@@ -6,7 +6,7 @@
           <h2 class="cta__title block__title">{{ cta.title }}</h2>
           <div class="cta__text" v-html="cta.text"></div>
           <NuxtLink v-if="cta.link" class="button card__link" :to="cta.link.uri">
-            {{ cta.link.label }}
+            Read more
           </NuxtLink>
         </div>
       </div>
@@ -22,12 +22,12 @@ export default {
   mixins: [DruxtEntityMixin],
 
   async fetch() {
-    const util = require('util')
-    let title = this.fields._heading.data
-    const text = this.fields._markup.data.value
-    let linkUri = this.fields._link.data.uri
+    let util = require('util')
+    let title = this.fields._heading ? this.fields._heading.data: ''
+    let content = this.fields._markup ? this.fields._markup.data.value: false
+    let linkUri = this.fields._link ? this.fields._link.data.uri: ''
     let linkLabel = title
-    const mediaObject = this.fields._media
+    let mediaObject = this.fields._media
     let imageUrl = ''
 
     // Get data from link field
@@ -39,27 +39,42 @@ export default {
       let nodeType = route.props.type;
       
       const entity = await this.getEntity({ id: nodeId, type: nodeType })
-      // Get title from node if there is no value in title field
-      title = title ? title : entity.attributes.title
+      // console.log(util.inspect(entity, false, null, true))
+
+      if(entity.relationships.media.data || entity.relationships.hero.data) {
+        // Get the image from media field, if not, get from hero field
+        let media = entity.relationships.media.data ? entity.relationships.media.data : entity.relationships.hero.data
+        let mediaObj = await this.getResource(media)
+        if(mediaObj.relationships.media_image) {
+          const image = await this.getResource(
+            mediaObj.relationships.media_image.data
+          )
+          imageUrl = process.env.BASE_URL + image.attributes.uri.url
+        }
+      }
+
+      content = content ? content : entity.attributes.deck ? entity.attributes.deck.value : ''
       linkUri = entity.attributes.path.alias
       linkLabel = entity.attributes.title
+      // Get title from node if there is no value in title field
+      title = title ? title : linkLabel
+
     }
 
-    // Get image from media field
     if(mediaObject) {
       const media = mediaObject.data.data
       const imageObj = await this.getResource(media)
+      // Get image from media field
       const image = await this.getResource(
         imageObj.relationships.media_image.data
       )
 
       imageUrl = process.env.BASE_URL + image.attributes.uri.url
-      // console.log(util.inspect(image, false, null, true))
     }
     
     this.cta = {
       title: title,
-      text: text,
+      text: content,
       link: {
         uri: linkUri,
         label: linkLabel
