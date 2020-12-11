@@ -1,5 +1,5 @@
 .button {
-  @apply px-3 py-2 text-sm font-medium rounded-md text-white shadow-sm bg-blue-900 inline-block mt-6 hover:bg-yellow-500 transition-all duration-500;
+  @apply px-3 py-2 text-sm font-medium rounded-md text-white shadow-sm bg-yellow-600 inline-block mt-6 hover:bg-yellow-700 transition-all duration-500;
 
   &--action {
     @apply bg-indigo-600;
