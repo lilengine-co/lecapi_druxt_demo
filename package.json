@@ -16,6 +16,7 @@
     "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/style-resources": "^1.0.0",
     "core-js": "^3.6.5",
+    "druxt-menu": "^0.6.1",
     "druxt-site": "^0.2.2",
     "nuxt": "^2.14.6"
   },

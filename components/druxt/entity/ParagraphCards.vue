@@ -3,7 +3,22 @@
     <div class="card-block block-space">
       <div class="container mx-auto">
         <slot name="subtitle"/>
-        <ul class="card__list grid gap-4" :class="gridClass">
+        <ul v-if="getVariant == 'gallery'" class=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          <li class="card__item" v-for="card in cards" :key="card.id">
+            <div class="card group card--gallery bg-black hover:bg-gray-700 w-full relative p-square overflow-hidden transition duration-150 ease-in-out">
+              <div class="bg-center bg-cover absolute opacity-50 inset-0 transition duration-150 ease-in-out transform scale-100 group-hover:scale-125" v-bind:style="'background-image:url(' + card.image + ')'">
+              </div>
+              <div class="card__content absolute inset-0 p-5 xl:p-6 flex items-center justify-center flex-col text-gray-50">
+                <h3 class="card__title block__title">{{ card.heading }}</h3>
+                <div class="card__content markup__html" v-html="card.content"></div>
+                <NuxtLink v-if="card.link" class="button card__link" :to="card.link.uri">
+                  See more
+                </NuxtLink>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <ul v-else class="card__list grid gap-4" :class="gridClass">
           <li class="card__item" v-for="card in cards" :key="card.id">
             <div class="card bg-gray-100 h-full" :class="getVariant">
               <div class="w-full bg-center bg-cover" :class="imageClass" v-bind:style="'background-image:url(' + card.image + ')'"></div>
@@ -128,7 +143,7 @@ export default {
         return "grid grid-cols-1 md:grid-cols-2 gap-2"
       }
       else {
-        return ""
+        return variant
       }
     }
   }
