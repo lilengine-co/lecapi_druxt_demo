@@ -78,9 +78,9 @@ export default {
             heading = entity.attributes.title
           }
 
-          if(entity.relationships.media.data || entity.relationships.hero.data) {
-            // Get the image from media field, if not, get from hero field
-            let media = entity.relationships.media.data ? entity.relationships.media.data : entity.relationships.hero.data
+          if(entity.relationships.hero.data) {
+            // Get the image from hero field
+            let media = entity.relationships.hero.data
             let mediaObj = await this.getResource(media)
             if(mediaObj.relationships.media_image) {
               const image = await this.getResource(
