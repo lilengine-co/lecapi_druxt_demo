@@ -14,6 +14,15 @@ export default {
     theme: 'legin',
   }),
 
+  head: {
+    meta: [
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      }
+    ],
+  },
+
   computed: {
     isHomePath() {
       return !!this.$store.state.druxtRouter.route.isHomePath

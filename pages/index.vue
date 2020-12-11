@@ -1,8 +1,9 @@
 <template>
-  <div class="absolute inset-0">
+  <div id="homepage" class="absolute inset-0">
     <!-- This example requires Tailwind CSS v2.0+ -->
+    <canvas id="canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
     <div class="bg-gray-50">
-      <div class="cta-block bg-center bg-cover w-screen h-screen relative bg-gradient-to-t from-black" v-bind:style="'background-image:url(https://i.pinimg.com/originals/1b/9a/fe/1b9afe98dbedc2770f6b37b39eb06b90.jpg)'">
+      <div class="cta-block bg-center bg-cover w-screen h-screen relative bg-gradient-to-t from-black" v-bind:style="'background-image:url(/images/bg-2.png)'">
         <div class="bg-gradient-to-t absolute inset-0 from-black flex items-center">
           <div class="container mx-auto">
             <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
@@ -24,7 +25,7 @@
         </div>
       </div>
     </div>
-
+    <script src="/js/snow-animation.js"></script>
   </div>
 </template>
 
