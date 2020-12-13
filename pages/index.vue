@@ -15,7 +15,7 @@
               </div>
               <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                 <div class="inline-flex rounded-md shadow">
-                  <a href="/ivstudios/basic-page/cafe" class="inline-flex items-center justify-center button uppercase">
+                  <a href="cafe/basic-page/cafe" class="inline-flex items-center justify-center button uppercase">
                     See the menu
                   </a>
                 </div>
