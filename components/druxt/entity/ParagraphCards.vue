@@ -59,7 +59,8 @@ export default {
           const image = await this.getResource(
             imageObj.relationships.media_image.data
           )
-          imageUrl = process.env.BASE_URL + image.attributes.uri.url
+
+          imageUrl = image.attributes.image_style_uri[0].large
         }
       }
 
@@ -81,8 +82,6 @@ export default {
           let nodeType = route.props.type
           
           const entity = await this.getEntity({ id: nodeId, type: nodeType })
-          // console.log('entity: ')
-          // console.log(util.inspect(entity, false, null, true))
           let desk = entity.attributes.deck ? entity.attributes.deck.value : ''
 
           linkLabel = linkText ? linkText : entity.attributes.title
@@ -101,7 +100,8 @@ export default {
               const image = await this.getResource(
                 mediaObj.relationships.media_image.data
               )
-              imageUrl = process.env.BASE_URL + image.attributes.uri.url
+
+              imageUrl = image.attributes.image_style_uri[0].large
             }
           }
         }

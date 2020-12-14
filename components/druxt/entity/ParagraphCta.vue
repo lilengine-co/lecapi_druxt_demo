@@ -49,7 +49,8 @@ export default {
           const image = await this.getResource(
             mediaObj.relationships.media_image.data
           )
-          imageUrl = process.env.BASE_URL + image.attributes.uri.url
+
+          imageUrl = image.attributes.image_style_uri[0].large
         }
       }
 
@@ -68,8 +69,7 @@ export default {
       const image = await this.getResource(
         imageObj.relationships.media_image.data
       )
-
-      imageUrl = process.env.BASE_URL + image.attributes.uri.url
+      imageUrl = image.attributes.image_style_uri[0].large
     }
     
     this.cta = {
