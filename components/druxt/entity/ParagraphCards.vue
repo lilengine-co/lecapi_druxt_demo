@@ -59,8 +59,7 @@ export default {
           const image = await this.getResource(
             imageObj.relationships.media_image.data
           )
-
-          imageUrl = image.attributes.image_style_uri[0].large
+          imageUrl = this.leGetImage(image)
         }
       }
 
@@ -100,8 +99,7 @@ export default {
               const image = await this.getResource(
                 mediaObj.relationships.media_image.data
               )
-
-              imageUrl = image.attributes.image_style_uri[0].large
+              imageUrl = this.leGetImage(image)
             }
           }
         }
