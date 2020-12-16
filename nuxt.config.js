@@ -53,7 +53,6 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     'druxt-site',
-    'druxt-menu',
     '@nuxtjs/style-resources',
     '@nuxtjs/proxy'
   ],
