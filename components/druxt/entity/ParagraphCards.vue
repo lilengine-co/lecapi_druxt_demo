@@ -75,7 +75,10 @@ export default {
             const image = await this.getResource(
               imageObj.relationships.media_image.data
             )
-            imageArray[index] = this.leGetImage(image)
+            imageArray[index] = {
+              src: this.leGetImage(image),
+              title: this.leGetImageAlt(imageObj)
+            }
           }
         }
         imageArray.length > 1 ? images = imageArray : ''
