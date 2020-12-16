@@ -72,14 +72,14 @@ export default {
     '/sites/default/files': process.env.BASE_URL
   },
 
+  // buildDir: 'dist',
+  // target: 'static',
+  
+  // generate: {
+  //   fallback: true
+  // },
+
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-  },
-
-  buildDir: 'dist',
-  target: 'static',
-  
-  generate: {
-    fallback: true
   }
 }
