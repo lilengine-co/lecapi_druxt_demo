@@ -2,9 +2,10 @@
   <div>
     <div>
       <div
-        class="opacity-0 cursor-pointer absolute inset-0"
+        class="opacity-0 cursor-pointer absolute inset-0 hover:opacity-70"
         @click="() => show(index)"
       >
+
         <img :src="images[index].src ? images[index].src : images[index]" :alt="images[index].title ? images[index].title : ''">
       </div>
     </div>
