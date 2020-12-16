@@ -12,4 +12,11 @@ components.push({
   global: true
 })
 
+// le custom components.
+components.push({
+  path: '~/components/le',
+  prefix: 'le',
+  global: true
+})
+
 export default components

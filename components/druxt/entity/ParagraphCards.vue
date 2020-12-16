@@ -3,13 +3,13 @@
     <div class="card-block block-space">
       <div class="container mx-auto">
         <slot name="subtitle"/>
-        <ul v-if="getVariant == 'gallery'" class=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <ul v-if="gallery" class=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <li class="card__item" v-for="card in cards" :key="card.id">
             <div class="card group card--gallery bg-black hover:bg-gray-700 w-full relative p-square overflow-hidden transition duration-150 ease-in-out">
               <div v-if="card.cover" class="bg-center bg-cover absolute opacity-50 inset-0 transition duration-150 ease-in-out transform scale-100 group-hover:scale-125" v-bind:style="'background-image:url(' + card.cover + ')'">
               </div>
-              <div v-if="card.images" class="card__image hidden">
-                <img v-for="image in card.images" :key="image.id" :src="image" alt=""/>
+              <div v-if="lightbox && card.images" class="card__image absolute inset-0 z-50">
+                <le-lightbox :images="card.images" ></le-lightbox>
               </div>
               <div class="card__content absolute inset-0 p-5 xl:p-6 flex items-center justify-center flex-col text-gray-50">
                 <h3 class="card__title block__title">{{ card.heading }}</h3>
@@ -59,6 +59,15 @@ export default {
 
       if(result.relationships._media.data) {
         const medias = result.relationships._media.data
+        // Get the first image as a cover
+        let coverObject = await this.getResource(medias[0])
+        if(coverObject.relationships.media_image) {
+          const coverImage = await this.getResource(
+            coverObject.relationships.media_image.data
+          )
+          cover = this.leGetImage(coverImage, 'media_library')
+        }
+
         for(let index in medias) {
           let media = medias[index]
           const imageObj = await this.getResource(media)
@@ -69,7 +78,6 @@ export default {
             imageArray[index] = this.leGetImage(image)
           }
         }
-        cover = imageArray[0]
         imageArray.length > 1 ? images = imageArray : ''
       }
 
@@ -109,7 +117,7 @@ export default {
               const image = await this.getResource(
                 mediaObj.relationships.media_image.data
               )
-              cover = this.leGetImage(image)
+              cover = this.leGetImage(image, 'media_library')
             }
           }
         }
@@ -133,6 +141,8 @@ export default {
   },
   data: () => ({
     cards: false,
+    lightbox: false,
+    gallery: false,
     imageClass: 'h-48',
     gridClass: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
   }),
@@ -150,6 +160,14 @@ export default {
         this.imageClass = 'h-full'
         this.gridClass = 'grid-cols-1 md:grid-cols-2'
         return "grid grid-cols-1 md:grid-cols-2 gap-2"
+      }
+      else if(variant == 'lightbox') {
+        this.lightbox = true
+        this.gallery = true
+      }
+      else if(variant == 'gallery') {
+        this.lightbox = true
+        this.gallery = true
       }
       else {
         return variant

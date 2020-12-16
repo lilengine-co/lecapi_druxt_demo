@@ -26,6 +26,10 @@ export default {
   plugins: [
     {
       src: '~/plugins/ledruxt'
+    },
+    {
+      src: '~/plugins/vue-easy-lightbox.js',
+      mode: 'client'
     }
   ],
 
