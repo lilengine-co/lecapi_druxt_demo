@@ -1,5 +1,5 @@
 <template>
-  <div id="homepage" class="absolute inset-0">
+  <div id="homepage" class="absolute inset-0 z-10">
     <!-- This example requires Tailwind CSS v2.0+ -->
     <canvas id="canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
     <div class="bg-gray-50">
@@ -9,9 +9,12 @@
             <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
               <div class="pr-10">
                 <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                  <span class="block text-white uppercase">Ready to dive in?</span>
+                  <span class="block text-white uppercase">Café Opening Hours</span>
                 </h2>
-                <h3 class="block text-2xl font-extrabold tracking-tight text-gray-300">The café is open 9:00am-3:30pm every day. <br />The shop is open 10:00am to 5:00pm every day.</h3>
+                <h3 class="block text-xl font-extrabold tracking-tight text-gray-300">
+                  Mon - Tue: Closed<br />
+                  Thurs - Sun: 9am - 4pm
+                </h3>
               </div>
               <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                 <div class="inline-flex rounded-md shadow">
