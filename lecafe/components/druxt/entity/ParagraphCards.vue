@@ -6,7 +6,7 @@
         <ul v-if="gallery" class=" grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <li class="card__item" v-for="card in cards" :key="card.id">
             <div class="card group card--gallery bg-black hover:bg-gray-700 w-full relative p-square overflow-hidden transition duration-150 ease-in-out">
-              <div v-if="card.cover" class="bg-center bg-cover absolute opacity-50 inset-0 transition duration-150 ease-in-out transform scale-100 group-hover:scale-125" v-bind:style="'background-image:url(' + card.cover + ')'">
+              <div v-if="card.cover" class="bg-center bg-cover absolute opacity-50 inset-0 transition duration-150 ease-in-out transform scale-100 group-hover:scale-110" v-bind:style="'background-image:url(' + card.cover + ')'">
               </div>
               <div v-if="lightbox && card.images" class="card__image absolute inset-0 z-50">
                 <le-lightbox :images="card.images" ></le-lightbox>
