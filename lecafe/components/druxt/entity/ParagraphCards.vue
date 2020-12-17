@@ -56,11 +56,11 @@ export default {
       let cover = false
       let images = false
       let imageArray = []
+      let mediaArray = result.relationships._media.data
 
-      if(result.relationships._media.data) {
-        const medias = result.relationships._media.data
+      if(mediaArray.length > 0) {
         // Get the first image as a cover
-        let coverObject = await this.getResource(medias[0])
+        let coverObject = await this.getResource(mediaArray[0])
         if(coverObject.relationships.media_image) {
           const coverImage = await this.getResource(
             coverObject.relationships.media_image.data
@@ -68,8 +68,8 @@ export default {
           cover = this.leGetImage(coverImage, 'media_library')
         }
 
-        for(let index in medias) {
-          let media = medias[index]
+        for(let index in mediaArray) {
+          let media = mediaArray[index]
           const imageObj = await this.getResource(media)
           if(imageObj.relationships.media_image) {
             const image = await this.getResource(

@@ -17,7 +17,7 @@
         class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto"
       >
         <li v-for="(item, key) of items" :key="key" class="lg:inline-flex lg:w-auto w-full">
-          <nuxt-link class="block w-full px-3 md:px-9 py-2 rounded text-gray-900 items-center justify-center hover:bg-gray-100 hover:text-black uppercase" :to="item.entity.attributes.link.uri">
+          <nuxt-link class="block w-full px-3 md:px-9 py-2 rounded text-gray-900 items-center justify-center hover:bg-gray-100 hover:text-black uppercase" :to="converLink(item.entity.attributes.link.uri)">
             <span>
               {{ item.entity.attributes.title }}
             </span></nuxt-link>
@@ -36,6 +36,12 @@ export default {
   methods: {
     toggeMenu: function() {
       this.isVisible = !this.isVisible
+    },
+    converLink: function(link) {
+      if(link.includes("internal:")) {
+        link = link.replace(/internal:/gi,'')
+      }
+      return link
     }
   }
 }
