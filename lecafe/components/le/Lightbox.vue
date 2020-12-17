@@ -2,7 +2,7 @@
   <div>
     <div>
       <div
-        class="opacity-0 cursor-pointer absolute transition duration-300 ease-in-out flex justify-center items-center inset-0 hover:opacity-10"
+        class="opacity-0 cursor-pointer absolute transition duration-300 ease-in-out flex justify-center items-center inset-0 hover:opacity-5"
         @click="() => show(index)"
       >
         <font-awesome-icon icon="expand-alt" class="text-white" style="font-size: 200px" />
