@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card-block block-space">
+    <div class="card-block block-space" v-if="!$fetchState.pending">
       <div class="container mx-auto">
         <slot name="subtitle"/>
         <ul v-if="gallery" class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
