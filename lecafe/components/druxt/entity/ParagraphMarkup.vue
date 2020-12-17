@@ -3,7 +3,7 @@
     <div class="markup-block block-space">
       <div class="container mx-auto">
         <slot name="subtitle"/>
-        <div class="markup__html" v-html="fields._markup.data.value">
+        <div class="markup__html prose max-w-none" v-html="fields._markup.data.value">
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@
               <ul class="list__items">
                 <li class="list__item mb-6" v-for="item in items" :key="item.id">
                   <h3 class="text-2xl font-semibold">{{ item.heading }}</h3>
-                  <div class="markup__html opacity-70" v-html="item.content"></div>
+                  <div class="markup__html opacity-70 prose max-w-none" v-html="item.content"></div>
                 </li>
               </ul>
             </div>
@@ -34,7 +34,7 @@
                 @before-leave="startTransition"
                 @after-leave="endTransition">
                 <dd v-if="item.active" class="accordion-item-details bg-gray-100 px-5 py-2">
-                  <div class="markup__html opacity-70 pt-2" v-html="item.content"></div>
+                  <div class="markup__html opacity-70 pt-2 prose max-w-none" v-html="item.content"></div>
                 </dd>
               </transition>
             </div>
@@ -45,7 +45,7 @@
           <ul v-bind:class="'list__items'">
             <li class="list__item mb-6" v-for="item in items" :key="item.id">
               <h3 class="text-2xl font-semibold">{{ item.heading }}</h3>
-              <div class="markup__html" v-html="item.content"></div>
+              <div class="markup__html prose max-w-none" v-html="item.content"></div>
             </li>
           </ul>
         </div>
