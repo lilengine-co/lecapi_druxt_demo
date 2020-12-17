@@ -2,11 +2,10 @@
   <div>
     <div>
       <div
-        class="opacity-0 cursor-pointer absolute inset-0 hover:opacity-70"
+        class="opacity-0 cursor-pointer absolute transition duration-300 ease-in-out flex justify-center items-center inset-0 hover:opacity-10"
         @click="() => show(index)"
       >
-
-        <img :src="images[index].src ? images[index].src : images[index]" :alt="images[index].title ? images[index].title : ''">
+        <font-awesome-icon icon="expand-alt" class="text-white" style="font-size: 200px" />
       </div>
     </div>
 
