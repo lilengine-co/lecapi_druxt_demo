@@ -18,9 +18,9 @@
               </div>
               <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
                 <div class="inline-flex rounded-md shadow">
-                  <a href="cafe/basic-page/menu" class="inline-flex items-center justify-center button uppercase">
+                  <nuxt-link to="cafe/basic-page/menu" class="inline-flex items-center justify-center button uppercase">
                     See menu
-                  </a>
+                  </nuxt-link>
                 </div>
               </div>
             </div>
