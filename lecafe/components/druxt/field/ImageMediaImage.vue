@@ -3,7 +3,7 @@
     <img
       v-for="entity of entities"
       :key="entity.id"
-      :src="entity.attributes.image_style_uri.large"
+      :src="entity.attributes.image_style_uri.original"
       alt=""
     />
   </div>
