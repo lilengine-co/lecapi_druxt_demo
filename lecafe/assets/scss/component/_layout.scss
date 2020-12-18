@@ -1,0 +1,19 @@
+.block {
+  &-space {
+    @apply py-8 mb-12;
+  }
+
+  &__title {
+    @apply text-2xl font-semibold mb-2;
+  }
+}
+
+.container {
+  .container {
+    padding: 0;
+  }
+}
+
+.p-square {
+  padding-bottom: 80%;
+}
