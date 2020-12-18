@@ -31,20 +31,28 @@
           </div>
         </div>
         <div class="footer__col">
-          <h2 class="text-2xl font-semibold mb-2">Connect with us</h2>
+          <h2 class="text-2xl font-semibold mb-4">Connect with us</h2>
           <div>
-            <ul>
+            <ul class="flex space-x-4">
               <li>
-                <a href="#">Instagram</a>
+                <a href="#" class="hover:text-yellow-700 transition-all duration-500">
+                  <font-awesome-icon :icon="['fab', 'instagram']" style="font-size: 30px"/>
+                </a>
               </li>
               <li>
-                <a href="#">Facebook</a>
+                <a href="#" class="hover:text-yellow-700 transition-all duration-500">
+                  <font-awesome-icon :icon="['fab', 'facebook-f']" style="font-size: 30px"/>
+                </a>
               </li>
               <li>
-                <a href="#">Twitter</a>
+                <a href="#" class="hover:text-yellow-700 transition-all duration-500">
+                  <font-awesome-icon :icon="['fab', 'twitter']" style="font-size: 30px"/>
+                </a>
               </li>
               <li>
-                <a href="#">Youtube</a>
+                <a href="#" class="hover:text-yellow-700 transition-all duration-500">
+                  <font-awesome-icon :icon="['fab', 'youtube']" style="font-size: 30px"/>
+                </a>
               </li>
             </ul>
           </div>
