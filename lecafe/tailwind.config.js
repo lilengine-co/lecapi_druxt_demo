@@ -10,6 +10,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     container: {
+      padding: '2rem',
       screens: {
         sm: "100%",
         md: "100%",

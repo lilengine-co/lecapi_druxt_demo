@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container mx-auto clear-both">
-      <div v-if="fields.hero" class="artilce__hero float-right max-w-xl md:pl-16">
+      <div v-if="fields.hero" class="artilce__hero float-right max-w-xl md:pl-16 pb-8">
         <slot name="hero" />
       </div>
       <div class="artilce__body">
