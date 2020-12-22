@@ -2,6 +2,7 @@
   <div>
     <druxt-block-region name="header"  :theme="theme" class="relative z-20 bg-white"/>
     <main class="py-14 lg:py-28">
+      <DruxtBreadcrumb />
       <Nuxt />
     </main>
     <druxt-block-region name="footer" :theme="theme"/>

@@ -20,7 +20,8 @@
           <nuxt-link class="block w-full px-3 md:px-9 py-2 rounded text-gray-900 items-center justify-center hover:bg-gray-100 hover:text-black uppercase" :to="converLink(item.entity.attributes.link.uri)">
             <span>
               {{ item.entity.attributes.title }}
-            </span></nuxt-link>
+            </span>
+          </nuxt-link>
         </li>
       </ul>
     </div>
