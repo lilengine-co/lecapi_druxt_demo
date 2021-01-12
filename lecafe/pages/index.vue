@@ -35,6 +35,30 @@
 <script>
 export default {
   name: 'Druxt',
+  async fetch() {
+    const util = require('util')
+    const products = await this.$shopify.product.fetchAll();
+      console.log('febaaaa detail x1');
+
+      console.log(products);
+      console.log(util.inspect(products, false, null, true));
+      for(let product in products) {
+        console.log('febaaaa detail 4');
+        console.log(product);
+        console.log(util.inspect(product.title, false, null, true))
+
+      }
+    // this.$shopify.product.fetchAll().then(products => {
+
+    //     console.log('febaaaa detail');
+    //     console.log(util.inspect(products, false, null, true))
+    //   for(let product in products) {
+
+    //     console.log('febaaaa detail 3');
+    //     console.log(util.inspect(product.title, false, null, true))
+    //   }
+    // });
+  },
 
   computed: {
     theme: () => 'legin',

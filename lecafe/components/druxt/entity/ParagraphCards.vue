@@ -9,26 +9,13 @@
         <slot name="subtitle"/>
         <ul v-if="gallery" class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <li class="card__item" v-for="card in cards" :key="card.id">
-            <div class="card group card--gallery bg-black hover:bg-gray-700 w-full relative p-square overflow-hidden transition duration-150 ease-in-out">
-              <div v-if="card.cover" class="bg-center bg-cover absolute opacity-50 inset-0 transition duration-150 ease-in-out transform scale-100 group-hover:scale-110" v-bind:style="'background-image:url(' + card.cover + ')'">
-              </div>
-              <div v-if="lightbox && card.images" class="card__image absolute inset-0 z-50">
-                <le-lightbox :images="card.images" ></le-lightbox>
-              </div>
-              <div class="card__content absolute inset-0 p-5 xl:p-6 flex items-center justify-center flex-col text-gray-50">
-                <h3 class="card__title block__title">{{ card.heading }}</h3>
-                <div class="card__content markup__html" v-html="card.content"></div>
-                <NuxtLink v-if="card.link" class="button card__link" :to="card.link.uri">
-                  See more
-                </NuxtLink>
-              </div>
-            </div>
+            <le-card :card="card" />
           </li>
         </ul>
         <ul v-else class="card__list grid gap-4" :class="gridClass">
           <li class="card__item" v-for="card in cards" :key="card.id">
             <div class="card bg-gray-100 h-full" :class="getVariant">
-              <div class="w-full bg-center bg-cover" :class="imageClass" v-bind:style="'background-image:url(' + card.image + ')'"></div>
+              <div class="w-full bg-center bg-cover" :class="imageClass" v-bind:style="'background-image:url(' + card.cover + ')'"></div>
               <div class="card__content p-5 xl:p-6">
                 <h3 class="card__title block__title">{{ card.heading }}</h3>
                 <div class="card__content markup__html" v-html="card.content"></div>
@@ -142,7 +129,8 @@ export default {
         content: content,
         link: link,
         cover: cover,
-        images: images
+        images: images,
+        lightbox: this.lightbox
       }
     }
   },
@@ -173,7 +161,7 @@ export default {
         this.gallery = true
       }
       else if(variant == 'gallery') {
-        this.lightbox = true
+        this.lightbox = false
         this.gallery = true
       }
       else {

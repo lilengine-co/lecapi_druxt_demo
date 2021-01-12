@@ -22,6 +22,7 @@
     "druxt-menu": "^0.6.1",
     "druxt-site": "^0.2.2",
     "nuxt": "^2.14.6",
+    "nuxt-shopify": "^1.10.4",
     "vue-easy-lightbox": "^0.14.0"
   },
   "devDependencies": {

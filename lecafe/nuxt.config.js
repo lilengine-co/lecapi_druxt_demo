@@ -54,7 +54,8 @@ export default {
   modules: [
     'druxt-site',
     '@nuxtjs/style-resources',
-    '@nuxtjs/proxy'
+    '@nuxtjs/proxy',
+    'nuxt-shopify'
   ],
 
   druxt: {
@@ -69,6 +70,11 @@ export default {
 
   proxy: {
     '/sites/default/files': process.env.BASE_URL
+  },
+
+  shopify: {
+    domain: 'lil-engine-cafe.myshopify.com/',
+    storefrontAccessToken: 'c0a14ed032b2abae3e7b979bc404ad44',
   },
 
   // buildDir: 'dist',
