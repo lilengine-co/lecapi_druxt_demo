@@ -9,7 +9,7 @@
         <slot name="subtitle"/>
         <ul v-if="gallery" class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           <li class="card__item" v-for="card in cards" :key="card.id">
-            <le-card :card="card" />
+            <le-card :card="card" :lightbox="lightbox"/>
           </li>
         </ul>
         <ul v-else class="card__list grid gap-4" :class="gridClass">

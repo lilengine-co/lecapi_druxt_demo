@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div class="footer clear-both">
     <div class="container mx-auto">
       <div class="footer__grid grid md:grid-cols-3 gap-10 md:gap-20">
         <div class="footer__col">

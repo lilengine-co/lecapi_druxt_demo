@@ -2,7 +2,7 @@
   <div class="card group card--gallery bg-black hover:bg-gray-700 w-full relative p-square overflow-hidden transition duration-150 ease-in-out">
     <div v-if="card.cover" class="bg-center bg-cover absolute opacity-50 inset-0 transition duration-150 ease-in-out transform scale-100 group-hover:scale-110" v-bind:style="'background-image:url(' + card.cover + ')'">
     </div>
-    <div v-if="card.lightbox && card.images" class="card__image absolute inset-0 z-50">
+    <div v-if="lightbox && card.images" class="card__image absolute inset-0 z-50">
       <le-lightbox :images="card.images" />
     </div>
     <div class="card__content absolute inset-0 p-5 xl:p-6 flex items-center justify-center flex-col text-gray-50">
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  props: ["card"]
+  props: ["card" , "lightbox"]
 }
 </script>
 <style lang="scss" scoped>
