@@ -1,11 +1,11 @@
 <template>
   <div class="font-sans">
     <druxt-block-region name="header"  :theme="theme" class="relative z-20 bg-white"/>
-    <main class="py-14 lg:py-28">
+    <main class="pt-14 lg:pt-28">
       <DruxtBreadcrumb />
       <Nuxt />
     </main>
-    <druxt-block-region name="footer" :theme="theme"/>
+    <druxt-block-region name="footer" :theme="theme"  class="pt-14 lg:pt-28 clear-both"/>
   </div>
 </template>
 
