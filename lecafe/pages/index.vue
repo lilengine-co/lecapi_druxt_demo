@@ -1,49 +1,67 @@
 <template>
-  <div id="homepage" class="absolute inset-0 z-10">
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <canvas id="canvas" class="absolute inset-0 pointer-events-none z-10"></canvas>
-    <div class="bg-gray-50">
-      <div class="cta-block bg-center bg-cover w-screen h-screen relative bg-gradient-to-t from-black" v-bind:style="'background-image:url(/images/bg-2.png)'">
-        <div class="bg-gradient-to-t absolute inset-0 from-black flex items-center">
-          <div class="container mx-auto">
-            <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
-              <div class="pr-10">
-                <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                  <span class="block text-white uppercase">Café Opening Hours</span>
-                </h2>
-                <h3 class="block text-xl font-extrabold tracking-tight text-gray-300">
-                  Mon - Tue: Closed<br />
-                  Thurs - Sun: 9am - 4pm
-                </h3>
-              </div>
-              <div class="mt-8 flex lg:mt-0 lg:flex-shrink-0">
-                <div class="inline-flex rounded-md shadow">
-                  <nuxt-link to="cafe/basic-page/menu" class="inline-flex items-center justify-center button uppercase">
-                    See menu
-                  </nuxt-link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="container mx-auto">
+    <div v-if="$fetchState.pending" class="w-full h-96 text-center p-14">
+      <font-awesome-icon icon="circle-notch" class="text-gray-200 animate-spin" style="font-size: 100px" />
     </div>
-    <script src="/js/snow-animation.js"></script>
+    <div v-else class="card-block block-space">
+      <ul class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        <li class="card__item" v-for="card in cards" :key="card.id">
+          <le-card :card="card"/>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
-
 <script>
 export default {
-  name: 'Druxt',
+  async fetch() {
+    const util = require('util')
+    const products = await this.$shopify.product.fetchAll();
+      console.log('febaaaa detail:');
+      console.log(products);
+    for (let i=0; i<products.length; i++) {
+      let product = products[i];
+      let productID = product.id;
+      let heading = product.title;
+      // let content = product.descriptionHtml;
+      let content = '';
+      let cover = product.images[0].src;
+      let images = product.images;
+      let link = {
+        title: "See more",
+        uri: 'product/' + productID
+      };
+      let isAvailable = product.availableForSale;
 
-  computed: {
-    theme: () => 'legin',
+      if(isAvailable) {
+        this.cards[i] = {
+          props: false,
+          heading: heading,
+          content: content,
+          link: link,
+          cover: cover,
+          images: images
+        }
+      }
+    }
+  },
+  data: () => (
+    {
+      cards: [],
+    }
+  ),
+  head: {
+    meta: [
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      }
+    ],
   },
 }
 </script>
-<style lang="scss" scoped>
-  * {
-    box-sizing: border-box;
-  }
+<style lang="scss">
+ * {
+   box-sizing: border-box;
+ }
 </style>
-

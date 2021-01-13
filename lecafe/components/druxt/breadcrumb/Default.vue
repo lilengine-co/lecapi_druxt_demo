@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div v-if="items && items.length" class="container mx-auto">
     <nav class="text-black font-bold my-8" aria-label="Breadcrumb">
       <ol class="list-none p-0 inline-flex">
         <li v-for="item in items" :key="item.id" class="flex items-center">
