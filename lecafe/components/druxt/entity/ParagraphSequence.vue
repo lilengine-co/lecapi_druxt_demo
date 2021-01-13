@@ -5,7 +5,7 @@
         <slot name="subtitle"/>
         <ul class="sequence__list">
           <li class="sequence__item mb-6" v-for="sequence in sequences" :key="sequence.id">
-            <h3 class="text-2xl font-semibold">{{ sequence.heading }}</h3>
+            <h3 class="text-2xl ">{{ sequence.heading }}</h3>
             <div class="markup__html prose max-w-none" v-html="sequence.content"></div>
           </li>
         </ul>

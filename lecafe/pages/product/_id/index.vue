@@ -15,7 +15,7 @@
       <div class="artilce__body">
         <div class="artilce__heading">
           <h1 v-if="product.title" class="page-title text-4xl mb-2">{{ product.title }}</h1>
-          <div v-if="product.summary" class="page__deck text-xl" v-html="product.summary"></div>
+          <div v-if="product.summary" class="page__deck" v-html="product.summary"></div>
         </div>
         <div class="artilce__content">
           <slot name="content" />

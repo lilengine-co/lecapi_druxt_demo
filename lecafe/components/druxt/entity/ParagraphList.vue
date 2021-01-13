@@ -10,7 +10,7 @@
             <div class="md:w-3/4 bg-gray-100 p-6 rounded-md">
               <ul class="list__items">
                 <li class="list__item mb-6" v-for="item in items" :key="item.id">
-                  <h3 class="text-2xl font-semibold">{{ item.heading }}</h3>
+                  <h3 class="text-2xl ">{{ item.heading }}</h3>
                   <div class="markup__html opacity-70 prose max-w-none" v-html="item.content"></div>
                 </li>
               </ul>
@@ -23,7 +23,7 @@
             <div class="list__item mb-2 rounded-md border border-gray-100" :class="{'is-active': item.active}" v-for="(item, index) in items" :key="item.id">
               <dt class="list__title">
                 <button @click="toggle(index)" class="accordion-item-trigger block relative hover:opacity-70 text-left w-full px-5 py-2">
-                  <h3 class="text-lg font-semibold">{{ item.heading }}</h3>
+                  <h3 class="text-lg ">{{ item.heading }}</h3>
                   <font-awesome-icon :icon="['fas', 'chevron-circle-down']" :class="{'rotate-180 ': item.active}" class="list__icon transform transition duration-300 ease-in-out absolute right-3 top-4" />
                 </button>
               </dt>
@@ -44,7 +44,7 @@
           <slot name="subtitle"/>
           <ul v-bind:class="'list__items'">
             <li class="list__item mb-6" v-for="item in items" :key="item.id">
-              <h3 class="text-2xl font-semibold">{{ item.heading }}</h3>
+              <h3 class="text-2xl ">{{ item.heading }}</h3>
               <div class="markup__html prose max-w-none" v-html="item.content"></div>
             </li>
           </ul>

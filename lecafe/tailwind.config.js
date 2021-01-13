@@ -17,6 +17,10 @@ module.exports = {
         lg: "1024px",
         xl: "1280px"
       }
+    },
+    fontFamily: {
+      'sans': ['Montserrat', 'sans-serif'],
+      'serif': ['"Rozha One"', 'serif'],
     }
   },
   variants: {

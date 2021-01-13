@@ -28,14 +28,14 @@ export default {
   async fetch() {
     const util = require('util')
     const products = await this.$shopify.product.fetchAll();
-      console.log('febaaaa detail:');
       console.log(products);
     for (let i=0; i<products.length; i++) {
       let product = products[i];
       let productID = product.id;
       let heading = product.title;
       // let content = product.descriptionHtml;
-      let content = '';
+      let price = product.variants[0].price;
+
       let cover = product.images[0].src;
       let images = product.images;
       let link = {
@@ -48,7 +48,7 @@ export default {
         this.cards[i] = {
           props: false,
           heading: heading,
-          content: content,
+          content: '$' + price,
           link: link,
           cover: cover,
           images: images

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="subtitle-block mb-4">
-      <h3 class="subtitle__title text-3xl font-semibold">
+      <h3 class="subtitle__title text-3xl ">
         <NuxtLink  class="subtitle__link" :to="'#' + to">
           {{ fields._heading.data }}
         </NuxtLink>

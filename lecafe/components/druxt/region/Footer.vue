@@ -10,7 +10,7 @@
         <div class="footer__col">
           <div class="footer__block">
             <div class="mb-8">
-              <h2 class="f-block__title text-2xl font-semibold mb-2">Café Opening Hours</h2>
+              <h2 class="f-block__title text-2xl mb-2">Café Opening Hours</h2>
               <div class="grid sm:grid-cols-2 gap-4">
                 <div>
                   <h3 class="font-bold">Mon - Tue</h3>
@@ -23,7 +23,7 @@
               </div>
             </div>
             <div>
-              <h2 class="text-2xl font-semibold mb-2">Address</h2>
+              <h2 class="text-2xl mb-2">Address</h2>
               <div>
                 <span class="font-light">36 Mildura St, Fyshwick ACT 2609</span>
               </div>
@@ -31,7 +31,7 @@
           </div>
         </div>
         <div class="footer__col">
-          <h2 class="text-2xl font-semibold mb-4">Connect with us</h2>
+          <h2 class="text-2xl  mb-4">Connect with us</h2>
           <div>
             <ul class="flex space-x-4">
               <li>

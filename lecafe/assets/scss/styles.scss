@@ -3,11 +3,23 @@
 // Variables
 @import "base/variables";
 @import "base/colors";
+@import "base/fonts";
 
 //Helpers functions
 @import "helpers/functions";
 @import "helpers/mixins";
 // Components
+
+@layer base {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      @apply font-serif;
+    }
+}
 
 @layer components {
     @import "component/button";
