@@ -14,6 +14,17 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: "Plumb café",
+      meta: [
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1'
+        }
+      ]
+    }
+  },
   async fetch() {
     const util = require('util')
     const products = await this.$shopify.product.fetchAll();
@@ -50,14 +61,6 @@ export default {
       cards: [],
     }
   ),
-  head: {
-    meta: [
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1'
-      }
-    ],
-  },
 }
 </script>
 <style lang="scss">

@@ -8,8 +8,9 @@
       <font-awesome-icon icon="circle-notch" class="text-gray-200 animate-spin" style="font-size: 100px" />
     </div>
     <div v-else class="card-block block-space clear-both">
-      <div v-if="product.cover" class="artilce__hero text-center lg:float-right lg:max-w-xl lg:pl-16 pb-8">
+      <div v-if="product.cover" class="artilce__hero text-center relative lg:float-right lg:max-w-xl lg:pl-16 pb-8">
         <img :src="product.cover" :alt="product.title"/>
+        <le-lightbox :images="product.images" />
       </div>
       <div class="artilce__body">
         <div class="artilce__heading">
@@ -25,12 +26,25 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: this.title + " | Plumb café",
+      meta: [
+        {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1'
+        }
+      ]
+    }
+  },
   async fetch() {
     let productId = this.$route.params.id;
     this.$shopify.product.fetch(productId).then(product => {
       console.log(product);
+      this.title = product.title;
       this.product = {
         cover: product.images[0].src,
+        images: product.images,
         title: product.title,
         summary: product.descriptionHtml,
       }
@@ -39,10 +53,13 @@ export default {
   data: () => (
     {
       product: {},
+      title: "Detail product",
     }
   )
 }
 </script>
 <style lang="scss">
-
+  * {
+    box-sizing: border-box;
+  }
 </style>
