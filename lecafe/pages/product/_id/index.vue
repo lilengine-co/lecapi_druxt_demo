@@ -15,8 +15,18 @@
       </div>
       <div class="artilce__body">
         <div class="artilce__heading">
-          <div class="mb-6">
-            <div class="price px-2 border-b border-gray-300 inline-block border-solid">${{ product.price }}</div>
+          <div class="mb-6 flex flex-wrap items-end justify-between ">
+            <div class=" p-2 border-b border-gray-300">${{ product.price }}</div>
+            <div class="">
+              <label class="invisible" for="quantity">Quantity</label>
+              <select name="quantity" id="quantity" class="border-0 border-b border-gray-300 w-full">
+                <option value="" disabled selected>Quantity</option>
+                <option v-for="index in product.sku" :key="index" :value="index">{{ index }}</option>
+              </select>
+            </div>
+            <div class="justify-self-stretch">
+              <button class="button">Add to card</button>
+            </div>
           </div>
           <div v-if="product.summary" class="page__deck" v-html="product.summary"></div>
         </div>
@@ -44,13 +54,17 @@ export default {
     let productId = this.$route.params.id;
     this.$shopify.product.fetch(productId).then(product => {
       console.log(product);
+      let sku = parseInt(product.variants[0].sku)
+      console.log(sku)
+      console.log(typeof sku)
       this.title = product.title;
       this.product = {
         cover: product.images[0].src,
         images: product.images,
         title: product.title,
         summary: product.descriptionHtml,
-        price: product.variants[0].price
+        price: product.variants[0].price,
+        sku: isNaN(sku) ? 1 : sku
       }
     });
   },
