@@ -110,6 +110,7 @@ export default {
         // Let the watch know that cart has been updated
         localStorage.setItem("cartUpdated", Math.round(+new Date()/1000));
         alert("Added to your card");
+        this.$router.go();
       });
     }
   }
