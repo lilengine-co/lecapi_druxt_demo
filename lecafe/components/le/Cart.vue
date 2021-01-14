@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- component -->
-    <div class="p-5">
-      <div class="flex justify-center">
+    <div class="md:p-5">
+      <div v-if="!$fetchState.pending" class="flex justify-center">
         <div class="relative ">
           <div class="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
             <div class="flex flex-row-reverse ml-2 w-full">
@@ -81,24 +81,15 @@ export default {
 
       // Featching a Checkout
       this.$shopify.checkout.fetch(this.checkoutID).then(checkout => {
-        // Do something with the checkout
-        console.log("checkout List");
-        console.log(checkout);
-        // Get the list items
         this.lineItems = checkout.lineItems;
-        console.log("lineItems array");
         console.log(this.lineItems);
       }); 
     }
   },
   watch: {
     cartUpdated: function () {
-      // Featching a Checkout
       this.$shopify.checkout.fetch(this.checkoutID).then(checkout => {
-        // Do something with the checkout
         this.lineItems = checkout.lineItems;
-        console.log("lineItems array watching");
-        console.log(this.lineItems);
       }); 
     }
   },
@@ -116,7 +107,7 @@ export default {
     goCheckout() {
       this.hideCart = true;
       this.$router.push('/checkout');
-    },
+    }
   }
 }
 </script>

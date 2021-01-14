@@ -19,13 +19,13 @@
             <div class=" p-2 border-b border-gray-300">${{ product.price }}</div>
             <div class="">
               <label class="invisible" for="quantity">Quantity</label>
-              <select name="quantity" id="quantity" class="border-0 border-b border-gray-300 w-full">
+              <select name="quantity" v-model="quantity" id="quantity" class="border-0 border-b border-gray-300 w-full">
                 <option value="" disabled selected>Quantity</option>
                 <option v-for="index in product.quantity" :key="index" :value="index">{{ index }}</option>
               </select>
             </div>
             <div class="justify-self-stretch">
-              <button @click="addToCart(product.variantId, 2)" class="button">Add to card</button>
+              <button @click="addToCart(product.variantId, quantity)" class="button">Add to card</button>
             </div>
           </div>
           <div v-if="product.summary" class="page__deck" v-html="product.summary"></div>
@@ -88,6 +88,7 @@ export default {
       product: {},
       title: "Detail product",
       checkoutID: "",
+      quantity: '',
     }
   ),
   methods: {
@@ -96,7 +97,7 @@ export default {
       const lineItemsToAdd = [
         {
           variantId: variantId,
-          quantity: quantity,
+          quantity: quantity == ''? 1 : quantity,
         },
       ];
 

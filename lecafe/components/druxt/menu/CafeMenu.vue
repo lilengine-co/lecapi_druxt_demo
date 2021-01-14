@@ -9,7 +9,7 @@
       <font-awesome-icon :icon="['fas', 'bars']" />
     </button>
     <div
-      class="top-navbar absolute bg-white w-64 shadow lg:shadow-none mt-1 lg:mt-0 lg:w-auto right-0 top-full lg:static lg:w-full lg:inline-flex lg:flex-grow"
+      class="top-navbar absolute bg-white w-48 md:w-64 shadow lg:shadow-none mt-1 lg:mt-0 lg:w-auto right-0 top-full lg:static lg:w-full lg:inline-flex lg:flex-grow"
       :class="{ 'hidden': !isVisible }"
       id="navigation"
     >
