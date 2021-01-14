@@ -163,7 +163,9 @@ export default {
       }
     },
     numberWithCommas(number) {
-      return number.toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      return number.toFixed(2);
+      // There is an issue on safari
+      // return number.toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
   }
 }
