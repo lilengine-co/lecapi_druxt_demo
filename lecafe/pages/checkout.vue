@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div v-if="$fetchState.pending" class="w-full h-96 text-center p-14">
+    <div v-if="loading" class="w-full h-96 text-center p-14">
       <font-awesome-icon icon="circle-notch" class="text-gray-200 animate-spin" style="font-size: 100px" />
     </div>
     <div v-else class="card-block">
@@ -93,9 +93,10 @@ export default {
       checkoutID: "",
       lineItems: [],
       cartUpdated: '',
+      loading: true,
     }
   ),
-  async fetch() {
+  async mounted () {
     if(process.browser){
       // Set the checkoutID then create a new checkout
       if (localStorage.getItem("checkoutID")) {
@@ -122,6 +123,7 @@ export default {
         this.lineItems = checkout.lineItems;
         console.log("lineItems array");
         console.log(this.lineItems);
+        this.loading = false;
       }); 
     }
   },

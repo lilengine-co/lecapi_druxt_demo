@@ -2,7 +2,7 @@
   <div>
     <!-- component -->
     <div class="md:p-5">
-      <div v-if="!$fetchState.pending" class="flex justify-center">
+      <div class="flex justify-center">
         <div class="relative ">
           <div class="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
             <div class="flex flex-row-reverse ml-2 w-full">
@@ -61,7 +61,7 @@ export default {
       hideCart: true,
     }
   ),
-  async fetch() {
+  async mounted () {
     if(process.browser){
       // Set the checkoutID then create a new checkout
       if (localStorage.getItem("checkoutID")) {
@@ -82,7 +82,6 @@ export default {
       // Featching a Checkout
       this.$shopify.checkout.fetch(this.checkoutID).then(checkout => {
         this.lineItems = checkout.lineItems;
-        console.log(this.lineItems);
       }); 
     }
   },
