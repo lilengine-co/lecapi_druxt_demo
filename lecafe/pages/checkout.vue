@@ -35,13 +35,18 @@
                       <small>(Remove item)</small>
                     </button>
                   </td>
-                  <td class="justify-center md:justify-end md:flex mt-6">
+                  <!-- <td class="justify-center md:justify-end md:flex mt-6">
                     <div class="w-20 h-10">
                       <div class="relative flex flex-row w-full h-8">
-                      <input type="number" :value="item.quantity" 
+                        <input type="number" :value="item.quantity" 
                         class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                       </div>
                     </div>
+                  </td> -->
+                  <td class="text-center md:table-cell">
+                    <span class="text-sm lg:text-base font-medium">
+                      {{ item.quantity }}
+                    </span>
                   </td>
                   <td class="hidden text-right md:table-cell">
                     <span class="text-sm lg:text-base font-medium">
