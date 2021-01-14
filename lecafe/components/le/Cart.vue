@@ -35,7 +35,7 @@
                         <line x1="14" y1="11" x2="14" y2="17"></line>
                       </svg>
                     </div>
-                    ${{ item.variant.price * item.quantity }}
+                    ${{ numberWithCommas(item.variant.price * item.quantity) }}
                 </div>
               </div>
               <div class="p-4 justify-center flex">
@@ -106,6 +106,9 @@ export default {
     goCheckout() {
       this.hideCart = true;
       this.$router.push('/checkout');
+    },
+    numberWithCommas(number) {
+      return number.toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
   }
 }
