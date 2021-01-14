@@ -28,7 +28,6 @@ export default {
   async fetch() {
     const util = require('util')
     const products = await this.$shopify.product.fetchAll();
-      console.log(products);
     for (let i=0; i<products.length; i++) {
       let product = products[i];
       let productID = product.id;
