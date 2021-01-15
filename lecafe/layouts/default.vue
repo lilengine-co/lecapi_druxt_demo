@@ -1,6 +1,6 @@
 <template>
   <div class="font-sans">
-    <druxt-block-region name="header"  :theme="theme" class="relative z-20 bg-white"/>
+    <druxt-block-region name="header" :feb="feb" :theme="theme" class="relative z-20 bg-white"/>
     <main class="pt-6 md:pt-14 lg:pt-28">
       <DruxtBreadcrumb />
       <Nuxt />
@@ -13,6 +13,7 @@
 export default {
   data: () => ({
     theme: 'legin',
+    feb: 'This is the feb value from layout'
   }),
 
   head: {

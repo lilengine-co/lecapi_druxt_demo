@@ -39,10 +39,12 @@
   </div>
 </template>
 <script>
+import {mapGetters, mapActions} from "vuex"
+
 export default {
   head() {
     return {
-      title: this.title + " | Plumb café",
+      title: this.product.title + " | Plumb café",
       meta: [
         {
           name: 'viewport',
@@ -53,49 +55,35 @@ export default {
   },
   async mounted () {
     let productId = this.$route.params.id;
-    this.$shopify.product.fetch(productId).then(product => {
-      console.log('product');
-      console.log(product);
-      this.title = product.title;
-      this.product = {
-        id: product.id,
-        cover: product.images[0].src,
-        images: product.images,
-        title: product.title,
-        summary: product.descriptionHtml,
-        price: product.variants[0].price,
-        variantId: product.variants[0].id,
-        quantity: 20
-      },
-      this.loading = false;
-    });
+    this.fetchProduct(productId);
+    this.getCheckoutId();
+    this.loading = false;
 
-    if(process.browser){
-      // Set the checkoutID then create a new checkout
-      if (localStorage.getItem("checkoutID")) {
-        this.checkoutID = localStorage.getItem("checkoutID");
-      }
-      else {
-        this.$shopify.checkout.create().then(checkout => {
-          // Do something with the checkout
-          localStorage.setItem("checkoutID", checkout.id);
-          this.checkoutID = checkout.id;
-        });
-      }
-    }
+    // if(process.browser){
+    //   // Set the checkoutID then create a new checkout
+    //   if (localStorage.getItem("checkoutID")) {
+    //     this.checkoutID = localStorage.getItem("checkoutID");
+    //   }
+    //   else {
+    //     this.$shopify.checkout.create().then(checkout => {
+    //       // Do something with the checkout
+    //       localStorage.setItem("checkoutID", checkout.id);
+    //       this.checkoutID = checkout.id;
+    //     });
+    //   }
+    // }
   },
   data: () => (
     {
-      product: {},
-      title: "Detail product",
-      checkoutID: "",
       quantity: '',
       loading: true,
     }
   ),
+  computed: mapGetters(['product', 'checkoutId']),
   methods: {
+    ...mapActions(['fetchProduct', 'getCheckoutId']),
     addToCart(variantId, quantity) {
-      const checkoutId = this.checkoutID;
+      const checkoutId = this.checkoutId;
       const lineItemsToAdd = [
         {
           variantId: variantId,

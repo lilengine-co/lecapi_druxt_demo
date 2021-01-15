@@ -7,7 +7,7 @@
           <div class="flex flex-row cursor-pointer truncate p-2 px-4  rounded">
             <div class="flex flex-row-reverse ml-2 w-full">
               <div @click="toggleCart()" slot="icon" class="relative  hover:bg-gray-100">
-                <div class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-700 text-white">{{ lineItems.length }}</div>
+                <div class="absolute text-xs rounded-full -mt-1 -mr-2 px-1 font-bold top-0 right-0 bg-red-700 text-white">{{ totalCartItems }}</div>
                 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart w-6 h-6 m-2">
                   <circle cx="9" cy="21" r="1"></circle>
                   <circle cx="20" cy="21" r="1"></circle>
@@ -18,16 +18,15 @@
           </div>
           <div class="absolute right-0 rounded-b border-t z-10 bg-white" :class="{ hidden: hideCart }">
             <div class="shadow-xl w-64">
-              <div v-for="item in lineItems" :key="item.id" class="p-2 pr-4 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100">
-                <div class="p-2 w-12 h-10 overflow-hidden relative" >
-                  <img :src="item.variant.image.src" class="w-12 object-center" alt="Thumbnail">
+              <div v-for="item in checkout.lineItems" :key="item.id" class="p-2 pr-4 flex bg-white hover:bg-gray-100 cursor-pointer border-b border-gray-100">
+                <div class="p-2 w-12 h-10 overflow-hidden relative bg-center bg-cover" v-bind:style="'background-image:url(' + item.variant.image.src + ')'">
                 </div>
-                <div class="flex-auto text-sm w-32">
+                <div class="flex-auto text-sm w-32 pl-2">
                   <div class="font-bold">{{ item.title }}</div>
                   <div class="text-gray-600">Qt: {{ item.quantity }}</div>
                 </div>
                 <div class="flex flex-col w-18 font-medium items-end">
-                    <div @click="removeFromCart(checkoutID, item.id)" class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
+                    <div @click="removeFromCart({ checkoutId: checkoutId, itemId: item.id})" class="w-4 h-4 mb-6 hover:bg-red-200 rounded-full cursor-pointer text-red-700">
                       <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 ">
                         <polyline points="3 6 5 6 21 6"></polyline>
                         <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
@@ -52,54 +51,24 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from "vuex"
+
 export default {
   data: () => (
     {
-      checkoutID: "",
-      lineItems: [],
-      cartUpdated: '',
       hideCart: true,
     }
   ),
-  async mounted () {
-    if(process.browser){
-      // Set the checkoutID then create a new checkout
-      if (localStorage.getItem("checkoutID")) {
-        this.checkoutID = localStorage.getItem("checkoutID");
-        this.cartUpdated = localStorage.getItem("cartUpdated");
-      }
-      else {
-        this.$shopify.checkout.create().then(checkout => {
-          // Do something with the checkout
-          localStorage.setItem("checkoutID", checkout.id);
-          this.checkoutID = checkout.id;
-          // Set the cartUpdate timestamp to watch the cart
-          localStorage.setItem("cartUpdated", Math.round(+new Date()/1000));
-          this.cartUpdated = Math.round(+new Date()/1000);
-        });
-      }
-
-      // Featching a Checkout
-      this.$shopify.checkout.fetch(this.checkoutID).then(checkout => {
-        this.lineItems = checkout.lineItems;
-      }); 
-    }
+  computed: {
+    ...mapGetters(['checkoutId', 'checkout', 'totalCartItems']),
   },
-  watch: {
-    cartUpdated: function () {
-      this.$shopify.checkout.fetch(this.checkoutID).then(checkout => {
-        this.lineItems = checkout.lineItems;
-      }); 
-    }
+  async mounted () {
+    this.getCheckoutId();
+    this.fetchCheckout(this.checkoutId);
+    this.loading = false;
   },
   methods: {
-    removeFromCart(checkoutId, lineItemIdsToRemove) {
-      if (confirm('Do you want to remote this item?')) {
-        this.$shopify.checkout.removeLineItems(checkoutId, lineItemIdsToRemove).then(checkout => {
-          this.cartUpdated = Math.round(+new Date()/1000);
-        });
-      }
-    },
+    ...mapActions(['fetchCheckout', 'getCheckoutId', 'removeFromCart']),
     toggleCart() {
       this.hideCart = !this.hideCart;
     },

@@ -1,18 +1,21 @@
 <template>
   <div class="container mx-auto">
-    <div v-if="$fetchState.pending" class="w-full h-96 text-center p-14">
+    <div v-if="loading" class="w-full h-96 text-center p-14">
       <font-awesome-icon icon="circle-notch" class="text-gray-200 animate-spin" style="font-size: 100px" />
     </div>
     <div v-else class="card-block">
       <ul class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <li class="card__item" v-for="card in cards" :key="card.id">
+        <li class="card__item" v-for="card in products" :key="card.id">
           <le-card :card="card"/>
         </li>
       </ul>
     </div>
   </div>
 </template>
+
 <script>
+import {mapGetters, mapActions} from "vuex"
+
 export default {
   head() {
     return {
@@ -25,39 +28,17 @@ export default {
       ]
     }
   },
-  async fetch() {
-    const util = require('util')
-    const products = await this.$shopify.product.fetchAll();
-    for (let i=0; i<products.length; i++) {
-      let product = products[i];
-      let productID = product.id;
-      let heading = product.title;
-      // let content = product.descriptionHtml;
-      let price = product.variants[0].price;
-
-      let cover = product.images[0].src;
-      let images = product.images;
-      let link = {
-        title: "See more",
-        uri: 'product/' + productID
-      };
-      let isAvailable = product.availableForSale;
-
-      if(isAvailable) {
-        this.cards[i] = {
-          props: false,
-          heading: heading,
-          content: '$' + price,
-          link: link,
-          cover: cover,
-          images: images
-        }
-      }
-    }
+  methods: {
+    ...mapActions(['fetchAllProducts'])
+  },
+  computed: mapGetters(['products']),
+  async mounted () {
+    this.fetchAllProducts();
+    this.loading = false;
   },
   data: () => (
     {
-      cards: [],
+      loading: true,
     }
   ),
 }
