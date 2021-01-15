@@ -25,7 +25,7 @@
               </select>
             </div>
             <div class="justify-self-stretch">
-              <button @click="addToCart(product.variantId, quantity)" class="button">Add to card</button>
+              <button @click="addToCart({checkoutId: checkoutId, variantId: product.variantId, quantity: quantity})" class="button">Add to card</button>
             </div>
           </div>
           <div v-if="product.summary" class="page__deck" v-html="product.summary"></div>
@@ -58,20 +58,6 @@ export default {
     this.fetchProduct(productId);
     this.getCheckoutId();
     this.loading = false;
-
-    // if(process.browser){
-    //   // Set the checkoutID then create a new checkout
-    //   if (localStorage.getItem("checkoutID")) {
-    //     this.checkoutID = localStorage.getItem("checkoutID");
-    //   }
-    //   else {
-    //     this.$shopify.checkout.create().then(checkout => {
-    //       // Do something with the checkout
-    //       localStorage.setItem("checkoutID", checkout.id);
-    //       this.checkoutID = checkout.id;
-    //     });
-    //   }
-    // }
   },
   data: () => (
     {
@@ -81,26 +67,7 @@ export default {
   ),
   computed: mapGetters(['product', 'checkoutId']),
   methods: {
-    ...mapActions(['fetchProduct', 'getCheckoutId']),
-    addToCart(variantId, quantity) {
-      const checkoutId = this.checkoutId;
-      const lineItemsToAdd = [
-        {
-          variantId: variantId,
-          quantity: quantity == ''? 1 : quantity,
-        },
-      ];
-
-      this.$shopify.checkout.addLineItems(checkoutId, lineItemsToAdd).then(checkout => {
-        // Do something with the updated checkout
-        console.log("lineItems added: ");
-        console.log(checkout.lineItems); // Array with one additional line item
-        // Let the watch know that cart has been updated
-        localStorage.setItem("cartUpdated", Math.round(+new Date()/1000));
-        alert("Added to your card");
-        this.$router.go();
-      });
-    }
+    ...mapActions(['fetchProduct', 'getCheckoutId', 'addToCart']),
   }
 }
 </script>

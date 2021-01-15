@@ -90,6 +90,21 @@ export const actions = {
         commit('settotalCartItems', totalCartItemValue);
       });
     }
+  },
+  async addToCart({ commit }, {checkoutId, variantId, quantity}) {
+    const lineItemsToAdd = [
+      {
+        variantId: variantId,
+        quantity: quantity == ''? 1 : quantity,
+      },
+    ];
+
+    this.$shopify.checkout.addLineItems(checkoutId, lineItemsToAdd).then(checkout => {
+      alert("Added to your card");
+      let totalCartItemValue = checkout.lineItems.length;
+      commit('setCheckout', checkout);
+      commit('settotalCartItems', totalCartItemValue);
+    });
   }
 }
 
