@@ -4,7 +4,7 @@
   }
 
   &__title {
-    @apply text-2xl font-semibold mb-2;
+    @apply text-2xl mb-2;
   }
 }
 
@@ -16,4 +16,15 @@
 
 .p-square {
   padding-bottom: 80%;
+}
+
+.prose {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 400;
+  }
 }
