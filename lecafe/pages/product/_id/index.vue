@@ -25,7 +25,7 @@
               </select>
             </div>
             <div class="justify-self-stretch">
-              <button @click="addToCart({checkoutId: checkoutId, variantId: product.variantId, quantity: quantity})" class="button">Add to card</button>
+              <button @click="addToCart({ variantId: product.variantId, quantity: quantity })" class="button">Add to card</button>
             </div>
           </div>
           <div v-if="product.summary" class="page__deck" v-html="product.summary"></div>

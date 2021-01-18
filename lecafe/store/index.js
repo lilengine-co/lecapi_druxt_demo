@@ -68,42 +68,31 @@ export const actions = {
           checkoutId = checkout.id;
         });
       };
-      console.log(checkoutId);
       commit('setCheckoutId', checkoutId);
     }
   },
   async fetchCheckout({ commit }, checkoutId) {
     this.$shopify.checkout.fetch(checkoutId).then(checkout => {
-      console.log(checkout);
-      let totalCartItemValue = checkout.lineItems.length;
       commit('setCheckout', checkout);
-      commit('settotalCartItems', totalCartItemValue);
     });
   },
-  async removeFromCart({ commit }, {checkoutId, itemId}) {
+  async removeFromCart({ commit, getters }, itemId) {
     if (confirm('Do you want to remote this item?')) {
-      console.log(checkoutId);
-      console.log(itemId);
-      this.$shopify.checkout.removeLineItems(checkoutId, itemId).then(checkout => {
-        let totalCartItemValue = checkout.lineItems.length;
+      this.$shopify.checkout.removeLineItems(getters.checkoutId, itemId).then(checkout => {
         commit('setCheckout', checkout);
-        commit('settotalCartItems', totalCartItemValue);
       });
     }
   },
-  async addToCart({ commit }, {checkoutId, variantId, quantity}) {
+  async addToCart({ commit, getters }, { variantId, quantity }) {
     const lineItemsToAdd = [
       {
         variantId: variantId,
         quantity: quantity == ''? 1 : quantity,
       },
     ];
-
-    this.$shopify.checkout.addLineItems(checkoutId, lineItemsToAdd).then(checkout => {
+    this.$shopify.checkout.addLineItems(getters.checkoutId, lineItemsToAdd).then(checkout => {
       alert("Added to your card");
-      let totalCartItemValue = checkout.lineItems.length;
       commit('setCheckout', checkout);
-      commit('settotalCartItems', totalCartItemValue);
     });
   }
 }
@@ -121,6 +110,9 @@ export const mutations = {
   setProducts: (state, products) => (state.products = products),
   setProduct: (state, product) => (state.product = product),
   setCheckoutId: (state, checkoutId) => (state.checkoutId = checkoutId),
-  setCheckout: (state, checkout) => (state.checkout = checkout),
-  settotalCartItems: (state, totalCartItems) => (state.totalCartItems = totalCartItems),
+  setCheckout: (state, checkout) => {
+    let totalCartItems = checkout.lineItems.length;
+    state.totalCartItems = totalCartItems;
+    state.checkout = checkout;
+  }
 }
