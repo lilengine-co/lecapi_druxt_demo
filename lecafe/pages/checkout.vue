@@ -98,18 +98,12 @@ export default {
       ]
     }
   },
-  data: () => (
-    {
-      loading: true,
-    }
-  ),
   async mounted () {
     this.getCheckoutId();
     this.fetchCheckout(this.checkoutId);
-    this.loading = false;
   },
   computed: {
-    ...mapGetters(['checkoutId', 'checkout']),
+    ...mapGetters(['checkoutId', 'checkout', 'loading']),
   },
   methods: {
     ...mapActions(['fetchCheckout', 'getCheckoutId', 'removeFromCart']),

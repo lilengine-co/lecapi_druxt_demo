@@ -57,15 +57,13 @@ export default {
     let productId = this.$route.params.id;
     this.fetchProduct(productId);
     this.getCheckoutId();
-    this.loading = false;
   },
   data: () => (
     {
       quantity: '',
-      loading: true,
     }
   ),
-  computed: mapGetters(['product', 'checkoutId']),
+  computed: mapGetters(['product', 'checkoutId', 'loading']),
   methods: {
     ...mapActions(['fetchProduct', 'getCheckoutId', 'addToCart']),
   }

@@ -31,16 +31,10 @@ export default {
   methods: {
     ...mapActions(['fetchAllProducts'])
   },
-  computed: mapGetters(['products']),
+  computed: mapGetters(['products', 'loading']),
   async mounted () {
     this.fetchAllProducts();
-    this.loading = false;
   },
-  data: () => (
-    {
-      loading: true,
-    }
-  ),
 }
 </script>
 <style lang="scss">

@@ -1,6 +1,7 @@
 export const state = () => ({
   products: [],
   product: {},
+  loading: true,
   checkoutId: '',
   checkout: {},
   totalCartItems: 0,
@@ -8,6 +9,7 @@ export const state = () => ({
 
 export const actions = {
   async fetchAllProducts ({ commit }) {
+    commit('setLoading', true);
     let productItems = [];
     const products = await this.$shopify.product.fetchAll();
     for (let i=0; i<products.length; i++) {
@@ -37,8 +39,10 @@ export const actions = {
       }
     }
     commit('setProducts', productItems);
+    commit('setLoading', false);
   },
   async fetchProduct ({ commit }, id) {
+    commit('setLoading', true);
     let productDetail = {};
     this.$shopify.product.fetch(id).then(product => {
       productDetail = {
@@ -52,6 +56,7 @@ export const actions = {
         quantity: 20
       };
       commit('setProduct', productDetail);
+      commit('setLoading', false);
     });
   },
   async getCheckoutId({ commit }) {
@@ -72,8 +77,10 @@ export const actions = {
     }
   },
   async fetchCheckout({ commit }, checkoutId) {
+    commit('setLoading', true);
     this.$shopify.checkout.fetch(checkoutId).then(checkout => {
       commit('setCheckout', checkout);
+      commit('setLoading', false);
     });
   },
   async removeFromCart({ commit, getters }, itemId) {
@@ -103,12 +110,14 @@ export const getters = {
   checkoutId: (state) => state.checkoutId,
   checkout: (state) => state.checkout,
   totalCartItems: (state) => state.totalCartItems,
+  loading: (state) => state.loading,
 }
 
 export const mutations = {
   setCartItems: (state, checkout) => (state.cartItems = checkout),
   setProducts: (state, products) => (state.products = products),
   setProduct: (state, product) => (state.product = product),
+  setLoading: (state, status) => (state.loading = status),
   setCheckoutId: (state, checkoutId) => (state.checkoutId = checkoutId),
   setCheckout: (state, checkout) => {
     let totalCartItems = checkout.lineItems.length;
