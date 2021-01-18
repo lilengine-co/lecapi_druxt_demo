@@ -29,9 +29,9 @@
                   </td>
                   <td>
                     <NuxtLink :to="'/product/' + item.variant.product.id">
-                      <p class="mb-2 md:ml-4">{{ item.title }}</p>
+                      <p class="md:ml-4">{{ item.title }}</p>
                     </NuxtLink>
-                    <button type="submit" @click="removeFromCart(item.id)" class="text-gray-700 md:ml-4">
+                    <button type="submit" @click="removeFromCart(item.id)" class="text-gray-700 mb-4 md:ml-4">
                       <small>(Remove item)</small>
                     </button>
                   </td>

@@ -2,7 +2,7 @@
   <div class="font-sans">
     <druxt-block-region name="header" :theme="theme" class="fixed top-0 left-0 right-0 md:relative z-20 bg-white"/>
     <main class="pt-28 md:pt-14 lg:pt-20">
-      <DruxtBreadcrumb />
+      <!-- <DruxtBreadcrumb /> -->
       <Nuxt />
     </main>
     <druxt-block-region name="footer" :theme="theme"  class="pt-14 lg:pt-28 clear-both"/>
