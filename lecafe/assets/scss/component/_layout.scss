@@ -4,7 +4,7 @@
   }
 
   &__title {
-    @apply text-2xl mb-2;
+    @apply text-2xl mb-2 mt-8;
   }
 }
 
@@ -16,6 +16,10 @@
 
 .p-square {
   padding-bottom: 80%;
+}
+
+.p-rectangle {
+  padding-bottom: 30%;
 }
 
 .prose {

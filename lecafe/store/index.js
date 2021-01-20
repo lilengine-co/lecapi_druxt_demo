@@ -1,4 +1,35 @@
+function convertToCards(items, type) {
+  let cards = [];
+  for (let i=0; i<items.length; i++) {
+    let item = items[i];
+    let itemID = item.id;
+    let heading = item.title;
+    let price = item.variants ? '$' + item.variants[0].price : '';
+    let cover = item.image ? item.image.src : item.images[0].src;
+    let images = item.images ? item.images : [];
+    let link = {
+      title: "See more",
+      uri: '/' + type + '/' + itemID
+    };
+
+    let isAvailable = (type == 'product') ? item.availableForSale : true;
+    if(isAvailable && (heading != 'Home page')) {
+      cards.push({
+        props: false,
+        heading: heading,
+        content: price,
+        link: link,
+        cover: cover,
+        images: images
+      })
+    }
+  }
+  return cards;
+}
+
 export const state = () => ({
+  collections: [],
+  collection: {},
   products: [],
   product: {},
   loading: true,
@@ -8,36 +39,34 @@ export const state = () => ({
 });
 
 export const actions = {
+  async fetchAllCollections ({ commit }) {
+    this.$shopify.collection.fetchAllWithProducts().then(collections => {
+      commit('setLoading', true);
+      const collectionItems = convertToCards(collections, 'collection');
+      commit('setCollections', collectionItems);
+      commit('setLoading', false);
+    });
+  },
+  async fetchCollection ({ commit }, collectionId) {
+    commit('setLoading', true);
+    this.$shopify.collection.fetchWithProducts(collectionId).then(collection => {
+      // Do something with the collection
+      console.log("collection:");
+      console.log(collection);
+      console.log(collection.products);
+      let collectionDetail = {
+        id: collection.id,
+        title: collection.title,
+        products: convertToCards(collection.products, 'product')
+      };
+      commit('setCollection', collectionDetail);
+      commit('setLoading', false);
+    });    
+  },
   async fetchAllProducts ({ commit }) {
     commit('setLoading', true);
-    let productItems = [];
     const products = await this.$shopify.product.fetchAll();
-    for (let i=0; i<products.length; i++) {
-      let product = products[i];
-      let productID = product.id;
-      let heading = product.title;
-      // let content = product.descriptionHtml;
-      let price = product.variants[0].price;
-
-      let cover = product.images[0].src;
-      let images = product.images;
-      let link = {
-        title: "See more",
-        uri: 'product/' + productID
-      };
-      let isAvailable = product.availableForSale;
-
-      if(isAvailable) {
-        productItems[i] = {
-          props: false,
-          heading: heading,
-          content: '$' + price,
-          link: link,
-          cover: cover,
-          images: images
-        }
-      }
-    }
+    const productItems = convertToCards(products, 'product');
     commit('setProducts', productItems);
     commit('setLoading', false);
   },
@@ -105,6 +134,8 @@ export const actions = {
 }
 
 export const getters = {
+  collections: (state) => state.collections,
+  collection: (state) => state.collection,
   products: (state) => state.products,
   product: (state) => state.product,
   checkoutId: (state) => state.checkoutId,
@@ -114,6 +145,8 @@ export const getters = {
 }
 
 export const mutations = {
+  setCollections: (state, collections) => (state.collections = collections),
+  setCollection: (state, collection) => (state.collection = collection),
   setCartItems: (state, checkout) => (state.cartItems = checkout),
   setProducts: (state, products) => (state.products = products),
   setProduct: (state, product) => (state.product = product),
