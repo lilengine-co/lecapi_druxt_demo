@@ -13,8 +13,9 @@ function convertToCards(items, type) {
     };
 
     let isAvailable = (type == 'product') ? item.availableForSale : true;
-    if(isAvailable && (heading != 'Home page')) {
+    if(isAvailable && (heading != 'Home page 1')) {
       cards.push({
+        id: itemID,
         props: false,
         heading: heading,
         content: price,

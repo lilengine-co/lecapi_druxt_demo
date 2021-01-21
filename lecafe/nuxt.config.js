@@ -75,6 +75,7 @@ export default {
   shopify: {
     domain: 'lil-engine-cafe.myshopify.com/',
     storefrontAccessToken: 'c0a14ed032b2abae3e7b979bc404ad44',
+    unoptimized: true,
   },
 
   // buildDir: 'dist',

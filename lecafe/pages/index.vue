@@ -1,20 +1,21 @@
 <template>
   <div class="container mx-auto">
-    <div v-if="loading" class="w-full h-96 text-center p-14">
-      <font-awesome-icon icon="circle-notch" class="text-gray-200 animate-spin" style="font-size: 100px" />
-    </div>
-    <div v-else class="card-block">
-      <ul class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+    <div class="block-space">
+      <ul class=" grid gap-4 lg:gap-4 grid-cols-2 md:grid-cols-2 lg:grid-cols-5">
         <li class="card__item" v-for="item in collections" :key="item.id">
-          <le-card :card="item" :featured="true"/>
+          <div @click="fetchCollection(item.id)" class="card group card--gallery bg-black hover:bg-gray-700 w-full relative p-square overflow-hidden transition duration-150 ease-in-out p-rectangle cursor-pointer">
+            <div v-if="item.cover" class="bg-center bg-cover absolute opacity-50 inset-0 transition duration-150 ease-in-out transform scale-100 group-hover:scale-110" v-bind:style="'background-image:url(' + item.cover + ')'">
+            </div>
+            <div class="card__content absolute inset-0 p-5 xl:p-6 flex items-center justify-center flex-col text-gray-50">
+              <h3 class="card__title block__title">{{ item.heading }}</h3>
+            </div>
+          </div>
         </li>
       </ul>
-      <h2 class="block__title text-center">Featured products</h2>
-      <ul class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        <li class="card__item" v-for="card in collection.products" :key="card.id">
-          <le-card :card="card"/>
-        </li>
-      </ul>
+    </div>
+    <le-loading v-if="loading" />
+    <div v-else>
+      <le-collection :collection="collection" />
     </div>
   </div>
 </template>
@@ -50,6 +51,7 @@ export default {
   async mounted () {
     let homeCollectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIzNDA5MzU0MzU4Nw==';
     this.fetchAllCollections();
+    // let defaultCollectionID = this.collections[0].id;
     this.fetchCollection(homeCollectionId);
   },
 }
