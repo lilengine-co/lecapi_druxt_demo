@@ -12,11 +12,11 @@
       </div>
       <div class="artilce__body">
         <div class="artilce__heading">
-          <div class="mb-6 flex flex-wrap items-end justify-between ">
+          <div class="mb-6 flex flex-wrap items-end justify-between max-w-lg">
             <div class=" p-2 border-b border-gray-300">${{ product.price }}</div>
             <div class="">
               <label class="invisible" for="quantity">Quantity</label>
-              <select name="quantity" v-model="quantity" id="quantity" class="border-0 border-b border-gray-300 w-full">
+              <select name="quantity" v-model="quantity" id="quantity" class="border-0 border-b cursor-pointer border-gray-300 w-full">
                 <option value="" disabled selected>Quantity</option>
                 <option v-for="index in product.quantity" :key="index" :value="index">{{ index }}</option>
               </select>

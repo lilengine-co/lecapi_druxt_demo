@@ -51,9 +51,6 @@ export const actions = {
     commit('setLoading', true);
     this.$shopify.collection.fetchWithProducts(collectionId).then(collection => {
       // Do something with the collection
-      console.log("collection:");
-      console.log(collection);
-      console.log(collection.products);
       let collectionDetail = {
         id: collection.id,
         title: collection.title,
@@ -84,6 +81,9 @@ export const actions = {
         variantId: product.variants[0].id,
         quantity: 20
       };
+      
+      console.log("product:");
+      console.log(product);
       commit('setProduct', productDetail);
       commit('setLoading', false);
     });

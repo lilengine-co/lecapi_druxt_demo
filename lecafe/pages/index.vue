@@ -43,14 +43,12 @@ export default {
     ])
   },
   computed: mapGetters([
-    'products',
     'loading',
     'collections',
     'collection'
   ]),
   async mounted () {
     let homeCollectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIzNDA5MzU0MzU4Nw==';
-    this.fetchAllProducts();
     this.fetchAllCollections();
     this.fetchCollection(homeCollectionId);
   },
