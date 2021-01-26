@@ -53,6 +53,7 @@ export default {
     this.fetchAllCollections();
     // let defaultCollectionID = this.collections[0].id;
     this.fetchCollection(homeCollectionId);
+    this.fetchAllProducts();
   },
 }
 </script>
