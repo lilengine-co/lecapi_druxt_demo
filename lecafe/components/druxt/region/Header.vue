@@ -6,6 +6,7 @@
         <img class="h-14 md:h-24 w-auto mr-2" src="/logo.gif" alt="LilEngine website">
       </NuxtLink>
       <DruxtMenu name="cafe-menu" class="inline-flex lg:flex-grow top-navbar ml-auto relative lg:w-auto" />
+      <le-search />
       <le-cart />
     </nav>
   </div>

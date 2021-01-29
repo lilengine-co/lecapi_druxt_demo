@@ -34,9 +34,11 @@ export const state = () => ({
   products: [],
   product: {},
   loading: true,
+  loadingSearch: true,
   checkoutId: '',
   checkout: {},
   totalCartItems: 0,
+  searchResults: [],
 });
 
 export const actions = {
@@ -72,64 +74,6 @@ export const actions = {
     commit('setLoading', true);
     let productDetail = {};
 
-    // Product tags from detail
-    const productId = this.$shopify.graphQLClient.variable('productId', 'String');
-
-    const productQuery = this.$shopify.graphQLClient.query((root) => {
-      root.addConnection('products', { args: { first: 10, query: "id:Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzU5ODA5NzU4MjUwNTk="}}, (product) => {
-      // root.addConnection('products', { args: { first: 10 }}, (product) => {
-        product.add('title');
-        product.add('tags');
-        product.add('availableForSale');
-        product.add('createdAt');
-        product.add('updatedAt');
-        product.add('descriptionHtml');
-        product.add('handle');
-        product.add('productType');
-        product.add('vendor');
-        product.add('publishedAt');
-        product.add('onlineStoreUrl');
-        product.addConnection('images', { args: { first: 250 } }, (images) => {
-          images.add('src');
-          images.add('id');
-          images.add('altText');
-        })
-        product.addConnection('variants', { args: { first: 250 } }, (variants) => {
-          variants.add('id');
-          variants.add('product');
-          variants.add('title');
-          variants.add('price');
-          variants.add('image', (image) => {
-            image.add('src');
-            image.add('id');
-            image.add('altText');
-          })
-          variants.add('selectedOptions', (opts) => {
-            opts.add('name')
-            opts.add('value')
-          })
-        })
-      })
-    });
-    
-    // this.$shopify.graphQLClient.send(productQuery).then(({product, data}) => {
-    //   console.log(JSON.stringify(product, null, 4));
-
-    // });
-
-    // Build a custom products query using the unoptimized version of the SDK
-    // const productQuery = this.$shopify.graphQLClient.query((root) => {
-    //   root.addConnection('product', { args: {} }, (product) => {
-    //     product.add('tags'); // Add fields to be returned
-    //   });
-    // });
-
-    // Call the send method with the custom product query
-    const result = await this.$shopify.graphQLClient.send(productQuery);
-
-    // Do something with the product
-    console.log({ products: result.model });
-
     this.$shopify.product.fetch(id).then(product => {
       productDetail = {
         id: product.id,
@@ -144,6 +88,54 @@ export const actions = {
       commit('setProduct', productDetail);
       commit('setLoading', false);
     });
+  },
+  async searchProduct({ commit }, keyword) {
+    if(keyword != '') {
+      commit('setLoadingSearch', true);
+      const productQuery = this.$shopify.graphQLClient.query((root) => {
+        root.addConnection('products', { args: { first: 10, query: "title: " + keyword + ""}}, (product) => {
+          product.add('title');
+          product.add('tags');
+          product.add('availableForSale');
+          product.add('createdAt');
+          product.add('updatedAt');
+          product.add('descriptionHtml');
+          product.add('handle');
+          product.add('productType');
+          product.add('vendor');
+          product.add('publishedAt');
+          product.add('onlineStoreUrl');
+          product.addConnection('images', { args: { first: 250 } }, (images) => {
+            images.add('src');
+            images.add('id');
+            images.add('altText');
+          })
+          product.addConnection('variants', { args: { first: 250 } }, (variants) => {
+            variants.add('id');
+            variants.add('product');
+            variants.add('title');
+            variants.add('price');
+            variants.add('image', (image) => {
+              image.add('src');
+              image.add('id');
+              image.add('altText');
+            })
+            variants.add('selectedOptions', (opts) => {
+              opts.add('name')
+              opts.add('value')
+            })
+          })
+        })
+      });
+      // Call the send method with the custom product query
+      const result = await this.$shopify.graphQLClient.send(productQuery);
+      // Do something with the product
+      commit('setSearchResults', result.model.products);
+      commit('setLoadingSearch', false);
+    }
+    else {
+      commit('setSearchResults', '');
+    }
   },
   async getCheckoutId({ commit }) {
     if(process.browser){
@@ -199,6 +191,8 @@ export const getters = {
   checkout: (state) => state.checkout,
   totalCartItems: (state) => state.totalCartItems,
   loading: (state) => state.loading,
+  loadingSearch: (state) => state.loadingSearch,
+  searchResults: (state) => state.searchResults,
 }
 
 export const mutations = {
@@ -208,10 +202,12 @@ export const mutations = {
   setProducts: (state, products) => (state.products = products),
   setProduct: (state, product) => (state.product = product),
   setLoading: (state, status) => (state.loading = status),
+  setLoadingSearch: (state, status) => (state.loadingSearch = status),
   setCheckoutId: (state, checkoutId) => (state.checkoutId = checkoutId),
   setCheckout: (state, checkout) => {
     let totalCartItems = checkout.lineItems.length;
     state.totalCartItems = totalCartItems;
     state.checkout = checkout;
-  }
+  },
+  setSearchResults: (state, searchResults) => (state.searchResults = searchResults)
 }
