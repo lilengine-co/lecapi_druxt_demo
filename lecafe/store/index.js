@@ -73,7 +73,142 @@ export const actions = {
   async fetchProduct ({ commit }, id) {
     commit('setLoading', true);
     let productDetail = {};
-
+    // Create custom document graphsql.
+    const productDetailDocument = this.$shopify.graphQLClient.document();
+    const spreads = {};
+    const variables = {};
+    variables.__defaultOperation__ = {};
+    variables.__defaultOperation__.id = this.$shopify.graphQLClient.variable("id", "ID!");
+    spreads.VariantFragment = productDetailDocument.defineFragment("VariantFragment", "ProductVariant", function (root) {
+        root.add("id");
+        root.add("title");
+        root.add("price");
+        root.add("priceV2", function (priceV2) {
+            priceV2.add("amount");
+            priceV2.add("currencyCode");
+        });
+        root.add("presentmentPrices", {
+            args: {
+                first: 20
+            }
+        }, function (presentmentPrices) {
+            presentmentPrices.add("pageInfo", function (pageInfo) {
+                pageInfo.add("hasNextPage");
+                pageInfo.add("hasPreviousPage");
+            });
+            presentmentPrices.add("edges", function (edges) {
+                edges.add("node", function (node) {
+                    node.add("price", function (price) {
+                        price.add("amount");
+                        price.add("currencyCode");
+                    });
+                    node.add("compareAtPrice", function (compareAtPrice) {
+                        compareAtPrice.add("amount");
+                        compareAtPrice.add("currencyCode");
+                    });
+                });
+            });
+        });
+        root.add("weight");
+        root.add("availableForSale", {
+            alias: "available"
+        });
+        root.add("sku");
+        root.add("compareAtPrice");
+        root.add("compareAtPriceV2", function (compareAtPriceV2) {
+            compareAtPriceV2.add("amount");
+            compareAtPriceV2.add("currencyCode");
+        });
+        root.add("image", function (image) {
+            image.add("id");
+            image.add("originalSrc", {
+                alias: "src"
+            });
+            image.add("altText");
+        });
+        root.add("selectedOptions", function (selectedOptions) {
+            selectedOptions.add("name");
+            selectedOptions.add("value");
+        });
+        root.add("unitPrice", function (unitPrice) {
+            unitPrice.add("amount");
+            unitPrice.add("currencyCode");
+        });
+        root.add("unitPriceMeasurement", function (unitPriceMeasurement) {
+            unitPriceMeasurement.add("measuredType");
+            unitPriceMeasurement.add("quantityUnit");
+            unitPriceMeasurement.add("quantityValue");
+            unitPriceMeasurement.add("referenceUnit");
+            unitPriceMeasurement.add("referenceValue");
+        });
+    });
+    spreads.ProductFragment = productDetailDocument.defineFragment("ProductFragment", "Product", function (root) {
+        root.add("id");
+        root.add("availableForSale");
+        root.add("createdAt");
+        root.add("updatedAt");
+        root.add("descriptionHtml");
+        root.add("description");
+        root.add("handle");
+        root.add("productType");
+        root.add("title");
+        root.add("vendor");
+        root.add("publishedAt");
+        root.add("onlineStoreUrl");
+        root.add("tags");
+        root.add("options", function (options) {
+            options.add("name");
+            options.add("values");
+        });
+        root.add("images", {
+            args: {
+                first: 250
+            }
+        }, function (images) {
+            images.add("pageInfo", function (pageInfo) {
+                pageInfo.add("hasNextPage");
+                pageInfo.add("hasPreviousPage");
+            });
+            images.add("edges", function (edges) {
+                edges.add("cursor");
+                edges.add("node", function (node) {
+                    node.add("id");
+                    node.add("src");
+                    node.add("altText");
+                });
+            });
+        });
+        root.add("variants", {
+            args: {
+                first: 250
+            }
+        }, function (variants) {
+            variants.add("pageInfo", function (pageInfo) {
+                pageInfo.add("hasNextPage");
+                pageInfo.add("hasPreviousPage");
+            });
+            variants.add("edges", function (edges) {
+                edges.add("cursor");
+                edges.add("node", function (node) {
+                    node.addFragment(spreads.VariantFragment);
+                });
+            });
+        });
+    });
+    productDetailDocument.addQuery([variables.__defaultOperation__.id], function (root) {
+        root.add("node", {
+            args: {
+                id: variables.__defaultOperation__.id
+            }
+        }, function (node) {
+            node.addFragment(spreads.ProductFragment);
+        });
+    });
+    // Call the send method with the custom products query
+    this.$shopify.graphQLClient.send(productDetailDocument, {id: 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzU5ODA5NzU4MjUwNTk='}).then(({model, data}) => {
+        // Do something with the products
+        console.log(model.node.tags[0].toString());
+    });
     this.$shopify.product.fetch(id).then(product => {
       productDetail = {
         id: product.id,
