@@ -5,7 +5,7 @@
       <font-awesome-icon icon="circle-notch" class="text-gray-200 animate-spin" style="font-size: 100px" />
     </div>
     <div v-else class="card-block block-space clear-both">
-      <h1 v-if="product.title" class="page-title text-4xl mb-6">{{ product.title }}</h1>
+      <h1 v-if="product.title" class="page-title text-3xl md:text-4xl lg:text-6xl mb-6">{{ product.title }}</h1>
       <div v-if="product.cover" class="artilce__hero text-center relative lg:float-left lg:max-w-xl lg:pr-16 pb-8">
         <img :src="product.cover" :alt="product.title"/>
         <le-lightbox :images="product.images" />
@@ -33,6 +33,12 @@
       </div>
     </div>
     <div class="clear-both"></div>
+    <div v-if="product.tags" class="">
+      <div v-for="tag in product.tags" :key="tag" class="mr-1 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 rounded-full bg-white text-gray-700 border">
+        <font-awesome-icon icon="tag" class="text-gray-600 mr-1" />
+        {{ tag }}
+      </div>
+    </div>
   </div>
 </template>
 <script>

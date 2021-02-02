@@ -205,23 +205,23 @@ export const actions = {
         });
     });
     // Call the send method with the custom products query
-    this.$shopify.graphQLClient.send(productDetailDocument, {id: 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0LzU5ODA5NzU4MjUwNTk='}).then(({model, data}) => {
+    this.$shopify.graphQLClient.send(productDetailDocument, {id: id}).then(({model, data}) => {
         // Do something with the products
-        console.log(model.node.tags[0].toString());
-    });
-    this.$shopify.product.fetch(id).then(product => {
-      productDetail = {
-        id: product.id,
-        cover: product.images[0].src,
-        images: product.images,
-        title: product.title,
-        summary: product.descriptionHtml,
-        price: product.variants[0].price,
-        variantId: product.variants[0].id,
-        quantity: 20
-      };
-      commit('setProduct', productDetail);
-      commit('setLoading', false);
+        let product = model.node;
+        productDetail = {
+          id: product.id,
+          cover: product.images[0].src,
+          images: product.images,
+          title: product.title,
+          summary: product.descriptionHtml,
+          price: product.variants[0].price,
+          variantId: product.variants[0].id,
+          tags: product.tags,
+          quantity: 20
+        };
+        console.log(productDetail);
+        commit('setProduct', productDetail);
+        commit('setLoading', false);
     });
   },
   async searchProduct({ commit }, keyword) {
