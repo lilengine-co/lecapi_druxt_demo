@@ -7,7 +7,7 @@
             <div v-if="item.cover" class="bg-center bg-cover absolute opacity-50 inset-0 transition duration-150 ease-in-out transform scale-100 group-hover:scale-110" v-bind:style="'background-image:url(' + item.cover + ')'">
             </div>
             <div class="card__content absolute inset-0 p-5 xl:p-6 flex items-center justify-center flex-col text-gray-50">
-              <h3 class="text-white uppercase text-xl lg:text-2xl">{{ item.heading }}</h3>
+              <h3 class="text-white uppercase text-lg md:text-xl">{{ item.heading }}</h3>
             </div>
           </div>
         </li>
