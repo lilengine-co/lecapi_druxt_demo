@@ -18,9 +18,9 @@
     "@tailwindcss/forms": "^0.2.1",
     "@tailwindcss/typography": "^0.3.1",
     "core-js": "^3.6.5",
-    "druxt-breadcrumb": "^0.7.0",
-    "druxt-menu": "^0.6.1",
-    "druxt-site": "^0.2.2",
+    "druxt-breadcrumb": "^0.7.1",
+    "druxt-menu": "^0.7.0",
+    "druxt-site": "^0.3.0",
     "nuxt": "^2.14.6",
     "nuxt-shopify": "^1.10.4",
     "vue-easy-lightbox": "^0.14.0"
@@ -28,9 +28,7 @@
   "devDependencies": {
     "@nuxtjs/netlify-files": "^1.2.0",
     "@nuxtjs/tailwindcss": "^3.3.0",
-    "autoprefixer": "^9.8.6",
     "node-sass": "^5.0.0",
-    "postcss": "^7.0.35",
     "sass-loader": "^10.1.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.1"
   }
