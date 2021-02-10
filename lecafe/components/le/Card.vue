@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  props: ["card" , "lightbox", 'featured']
+  props: ["card" , "lightbox", 'featured'],
 }
 </script>
 <style lang="scss" scoped>
