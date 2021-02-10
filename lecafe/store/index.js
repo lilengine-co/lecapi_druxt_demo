@@ -303,6 +303,12 @@ export const actions = {
       });
     }
   },
+  async updateCart({ commit, getters }, { itemId, quantity }) {
+    const lineItemsToUpdate = [{ id: itemId, quantity: quantity }];
+    this.$shopify.checkout.updateLineItems(getters.checkoutId, lineItemsToUpdate).then(checkout => {
+      commit('setCheckout', checkout);
+    });
+  },
   async addToCart({ commit, getters }, { variantId, quantity }) {
     const lineItemsToAdd = [
       {

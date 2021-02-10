@@ -36,19 +36,19 @@
                       <small>(Remove item)</small>
                     </button>
                   </td>
-                  <!-- <td class="justify-center md:justify-end md:flex mt-6">
+                  <td class="justify-center md:justify-end md:flex mt-6">
                     <div class="w-20 h-10">
                       <div class="relative flex flex-row w-full h-8">
-                        <input type="number" :value="item.quantity" 
+                        <input type="number" @change="updateQTY($event, item.id)" :value="item.quantity" 
                         class="w-full font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
                       </div>
                     </div>
-                  </td> -->
-                  <td class="text-center md:table-cell">
+                  </td>
+                  <!-- <td class="text-center md:table-cell">
                     <span class="text-sm lg:text-base font-medium">
                       {{ item.quantity }}
                     </span>
-                  </td>
+                  </td> -->
                   <td class="hidden text-right md:table-cell">
                     <span class="text-sm lg:text-base font-medium">
                       ${{ item.variant.price }}
@@ -107,11 +107,15 @@ export default {
     ...mapGetters(['checkoutId', 'checkout', 'loading']),
   },
   methods: {
-    ...mapActions(['fetchCheckout', 'getCheckoutId', 'removeFromCart']),
+    ...mapActions(['fetchCheckout', 'getCheckoutId', 'removeFromCart' , 'updateCart']),
     numberWithCommas(number) {
       return number.toFixed(2);
       // There is an issue on safari
       // return number.toFixed(2).toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    },
+    updateQTY(event, itemID) {
+      let newQuantity = Number(event.target.value);
+      this.updateCart({ itemId: itemID, quantity: newQuantity })
     }
   }
 }
