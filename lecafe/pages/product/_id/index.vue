@@ -22,7 +22,9 @@
               </select>
             </div>
             <div class="justify-self-stretch">
-              <button @click="addToCart({ variantId: product.variantId, quantity: quantity })" class="button">Add to card</button>
+              <button @click="addToCart({ variantId: product.variantId, quantity: quantity })" class="button">
+                <font-awesome-icon icon="cart-plus" class="text-gray-200"/>
+                Add to cart</button>
             </div>
           </div>
           <div v-if="product.summary" class="page__deck" v-html="product.summary"></div>
