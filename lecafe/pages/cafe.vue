@@ -3,7 +3,7 @@
     <div class="block-space">
       <ul class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <li class="card__item" v-for="item in menus" :key="item.id">
-          <le-card :card="item"/>
+          <le-card :card="item" featured="true"/>
         </li>
       </ul>
     </div>
@@ -29,45 +29,24 @@ export default {
     {
       menus: [
         {
-          cover: '/images/le-pickup.jpg',
-          heading: 'Pickup',
+          cover: '/images/le-drink.jpg',
+          heading: 'Non-alcoholic drink',
           link: {
-            uri: '/cafe/article/pickup'
+            uri: '/non-alcoholic'
           }
         },
         {
           cover: '/images/le-cafe.jpg',
-          heading: 'Cafe',
+          heading: 'Menu',
           link: {
-            uri: '/cafe'
+            uri: '/menu'
           }
         },
         {
           cover: '/images/le-drink.jpg',
-          heading: 'Catering',
+          heading: 'Alcoholic drink',
           link: {
-            uri: '/catering'
-          }
-        },
-        {
-          cover: '/images/le-drink.jpg',
-          heading: 'Hamper',
-          link: {
-            uri: '/hamper'
-          }
-        },
-        {
-          cover: '/images/le-venue.jpg',
-          heading: 'Venue',
-          link: {
-            uri: '/venue'
-          }
-        },
-        {
-          cover: '/images/le-venue.jpg',
-          heading: 'Pantry',
-          link: {
-            uri: '/pantry'
+            uri: '/alcoholic'
           }
         },
       ],

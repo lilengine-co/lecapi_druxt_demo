@@ -21,7 +21,6 @@
     "druxt-breadcrumb": "^0.7.1",
     "druxt-entity": "^0.10.0",
     "druxt-menu": "^0.7.0",
-    "druxt-router": "^0.18.0",
     "druxt-site": "^0.3.0",
     "druxt-views": "^0.6.2",
     "nuxt": "^2.14.12",

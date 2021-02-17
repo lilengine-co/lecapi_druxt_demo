@@ -47,6 +47,8 @@ export const actions = {
       commit('setLoading', true);
       const collectionItems = convertToCards(collections, 'collection');
       commit('setCollections', collectionItems);
+      console.log('collectionItems');
+      console.log(collectionItems);
       commit('setLoading', false);
     });
   },
