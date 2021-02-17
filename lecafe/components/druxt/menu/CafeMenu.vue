@@ -17,17 +17,17 @@
         class="lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto"
       >
         <li class="lg:inline-flex group lg:w-auto w-full relative">
-          <span  @click="gotoLink('/')" class="block cursor-pointer w-full px-3 md:px-9 py-2 rounded text-gray-900 items-center justify-center group-hover:bg-gray-100 hover:bg-gray-100 hover:text-black uppercase">
+          <span  @click="gotoLink('/menu')" class="block cursor-pointer w-full px-3 md:px-9 py-2 rounded text-gray-900 items-center justify-center group-hover:bg-gray-100 hover:bg-gray-100 hover:text-black uppercase">
             Menu
           </span>
-          <ul class="lg:absolute lg:hidden top-full lg:shadow-md z-100 lg:py-2 bg-white group-hover:block">
+          <!-- <ul class="lg:absolute lg:hidden top-full lg:shadow-md z-100 lg:py-2 bg-white group-hover:block">
             <li v-for="item in collections" :key="item.id">
               <span @click="gotoLink(item.link.uri)" class="block cursor-pointer w-full px-3 md:px-9 py-2 text-gray-900 items-center justify-center hover:bg-gray-100 hover:text-black text-sm uppercase whitespace-nowrap">
                 <span class="lg:hidden"> - </span>
                 {{ item.heading }}
               </span>
             </li>
-          </ul>
+          </ul> -->
         </li>
         <li v-for="(item, key) of items" :key="key" class="lg:inline-flex lg:w-auto w-full">
           <span @click="gotoLink(converLink(item.entity.attributes.link.uri))" class="block cursor-pointer w-full px-3 md:px-9 py-2 rounded text-gray-900 items-center justify-center hover:bg-gray-100 hover:text-black uppercase">

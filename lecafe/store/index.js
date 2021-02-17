@@ -45,10 +45,9 @@ export const actions = {
   async fetchAllCollections ({ commit }) {
     this.$shopify.collection.fetchAllWithProducts().then(collections => {
       commit('setLoading', true);
-      const collectionItems = convertToCards(collections, 'collection');
-      commit('setCollections', collectionItems);
-      console.log('collectionItems');
-      console.log(collectionItems);
+      console.log('collections');
+      console.log(collections);
+      commit('setCollections', collections);
       commit('setLoading', false);
     });
   },

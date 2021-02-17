@@ -1,5 +1,5 @@
 <template>
-    <span @click="goBack" class="text-current hover:text-yellow-700 text-sm cursor-pointer">
+    <span @click="goBack" class="text-current hover:text-yellow-700 text-sm cursor-pointer mb-8 block">
       <font-awesome-icon icon="long-arrow-alt-left" style="font-size: 15px" />
       Go back
     </span>
