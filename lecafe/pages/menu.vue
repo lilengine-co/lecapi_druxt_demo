@@ -4,6 +4,13 @@
     <le-loading v-if="loading" />
     <div v-else>
       <div class="block-space">
+        <div class="grid grid-cols-2 place-items-stretch mb-10 lg:mb-24">
+          <h1 class="text-3xl md:text-6xl lg:text-8xl">Menu</h1>
+          <div class="flex items-center justify-end">
+            <img src="~assets/icons/icon-phone.svg?data" class="w-6 lg:w-8 h-auto" />
+            <a href="tel:0429541000" class="text-xl md:text-2xl lg:text-4xl whitespace-nowrap">0429 541 000</a>
+          </div>
+        </div>
         <ul class="grid gap-8 lg:gap-32 grid-cols-1 lg:grid-cols-2">
           <li class="" v-for="collection in collections" :key="collection.id">
             <le-collection :collection="collection" />
@@ -40,11 +47,7 @@ export default {
     'collections',
   ]),
   async mounted () {
-    // let homeCollectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIzNDA5MzU0MzU4Nw==';
     this.fetchAllCollections();
-    // let defaultCollectionID = this.collections[0].id;
-    // this.fetchCollection(homeCollectionId);
-    // this.fetchAllProducts();
   },
 }
 </script>

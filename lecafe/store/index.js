@@ -43,10 +43,8 @@ export const state = () => ({
 
 export const actions = {
   async fetchAllCollections ({ commit }) {
+    commit('setLoading', true);
     this.$shopify.collection.fetchAllWithProducts().then(collections => {
-      commit('setLoading', true);
-      console.log('collections');
-      console.log(collections);
       commit('setCollections', collections);
       commit('setLoading', false);
     });
