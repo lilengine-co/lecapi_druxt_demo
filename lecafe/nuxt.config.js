@@ -54,7 +54,8 @@ export default {
   modules: [
     'druxt-site',
     '@nuxtjs/style-resources',
-    'nuxt-shopify'
+    'nuxt-shopify',
+    '@nuxtjs/svg'
   ],
 
   druxt: {
