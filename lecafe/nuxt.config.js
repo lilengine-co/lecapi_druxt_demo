@@ -30,6 +30,9 @@ export default {
     {
       src: '~/plugins/vue-easy-lightbox.js',
       mode: 'client'
+    },
+    {
+      src: '~/plugins/vue-material'
     }
   ],
 
