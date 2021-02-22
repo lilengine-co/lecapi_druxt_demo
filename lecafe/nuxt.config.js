@@ -32,7 +32,8 @@ export default {
       mode: 'client'
     },
     {
-      src: '~/plugins/vue-material'
+      src: '~/plugins/v-calendar.js',
+      ssr: false
     }
   ],
 
