@@ -1,12 +1,12 @@
 <template>
-  <div class="booking-app grid md:grid-cols-2 md:gap-8">
-    <div>
-      <div class="flex shadow-md rounded overflow-hidden row-end-auto">
-        <div class="bg-yellow-700 w-52 text-white p-4">
+  <div class="booking-app md:grid md:grid-cols-2 md:gap-8">
+    <div class="mb-4">
+      <div class="md:flex shadow-md rounded overflow-hidden">
+        <div class="hidden md:block bg-yellow-700 w-52 text-white p-4">
           <div class="text-xl">{{ pickedYear }}</div>
           <div class="text-md">{{ pickedDate }}</div>
         </div>
-        <div class="calendar flex-auto">
+        <div class="calendar md:flex-auto">
           <v-calendar color="orange" v-model='date' :min-date='new Date()' is-expanded :attributes='attributes' @dayclick="onDayClick" :model-config="modelConfig" />
         </div>
       </div>

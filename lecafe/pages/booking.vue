@@ -7,13 +7,16 @@
           </li>
           <li class="flex items-center">
             <span :class="step.status == 'active' ? 'bg-yellow-700 text-white' : 'bg-gray-300'" class="rounded-full transition duration-500 justify-center ease-in-out inline-flex items-center w-8 h-8 ">{{ index + 1 }}</span>
-            <span class="inline-flex pl-2">{{ step.name }}</span>
+            <span class="hidden md:inline-flex pl-2">{{ step.name }}</span>
           </li>
         </template>
       </ul>
     </div>
     <div class="booking__section">
       <le-booking />
+    </div>
+    <div class="booking__pager">
+
     </div>
   </div>
 </template>
