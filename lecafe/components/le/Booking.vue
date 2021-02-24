@@ -1,7 +1,7 @@
 <template>
   <div class="booking-app md:grid md:grid-cols-2 md:gap-8">
     <div class="mb-4">
-      <div class="md:flex shadow-md rounded overflow-hidden">
+      <div class="md:flex shadow-md rounded overflow-hidden bg-white border">
         <div class="hidden md:block bg-yellow-700 w-52 text-white p-4">
           <div class="text-xl">{{ pickedYear }}</div>
           <div class="text-md">{{ pickedDate }}</div>
@@ -62,6 +62,12 @@
           </div>
         </div>
       </div>
+      <div class="text-right">
+        <button @click="submitBooking" v-if="nextShow" class="button">
+          Next
+          <font-awesome-icon icon="long-arrow-alt-right" style="font-size: 15px" />
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -118,7 +124,8 @@ export default {
         "Inside",
         "Yard (Outside)",
         "Any"
-      ]
+      ],
+      nextShow: false,
     };
   },
   computed: {
@@ -191,6 +198,18 @@ export default {
     selectSection(section) {
       this.sectionLabel = section == 'Any' ? 'In any section' : 'In "' + section + '"';
       this.sectionSelected = section;
+      this.sectionShow = false;
+      this.nextShow = true;
+    },
+    submitBooking() {
+      let bookingInfo = {
+        date: this.date,
+        persion: this.numberPerson,
+        service: this.serviceSelected.label,
+        time: this.timeSelected,
+        section: this.sectionSelected
+      }
+      this.$emit("booking-submit", bookingInfo);
     }
   },
 }
