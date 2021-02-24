@@ -20,7 +20,7 @@
     <div class="booking__section">
       <le-booking v-show="steps[0].status == 'active'" v-on:booking-submit="bookingSubmit"/>
       <le-detail v-show="steps[1].status == 'active'" v-on:detail-submit="detailSubmit"/>
-      <le-overview v-show="steps[2].status == 'active'" v-on:overview-submit="overviewSubmit" :booking="bookingInformation" :detail="detail"/>
+      <le-overview v-if="steps[2].status == 'active'" v-on:overview-submit="overviewSubmit" :booking="bookingInformation" :detail="detail"/>
       <div v-show="steps[2].status == 'done'" class="max-w-xl mx-auto">
         <h2 class="text-2xl px-2 mb-4 border-b">Thank you</h2>
         <div class="mb-2">
