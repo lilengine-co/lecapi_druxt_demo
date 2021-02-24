@@ -21,6 +21,14 @@
       <le-booking v-show="steps[0].status == 'active'" v-on:booking-submit="bookingSubmit"/>
       <le-detail v-show="steps[1].status == 'active'" v-on:detail-submit="detailSubmit"/>
       <le-overview v-show="steps[2].status == 'active'" v-on:overview-submit="overviewSubmit" :booking="bookingInformation" :detail="detail"/>
+      <div v-show="steps[2].status == 'done'" class="max-w-xl mx-auto">
+        <h2 class="text-2xl px-2 mb-4 border-b">Thank you</h2>
+        <div class="mb-2">
+          Thanks for your booking, we can't wait to see you. We've sent you an email with the details of this booking. Please be on time as we will give the table away if you are more than 15 minutes late.
+        </div>
+        <div class="text-lg">Kind regards Plumb on Tennant</div>
+        <span class="button inline-block mx-auto my-6" @click="reloadPage">Book another table</span>
+      </div>
     </div>
   </div>
 </template>
@@ -88,8 +96,11 @@ export default {
       else {
         this.steps[2].status = 'done';
         this.overview = overview;
-        console.log(detail);
+        console.log(overview);
       }
+    },
+    reloadPage() {
+      this.$router.go();
     }
   },
 }

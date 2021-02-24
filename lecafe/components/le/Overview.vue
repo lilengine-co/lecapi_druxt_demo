@@ -67,7 +67,7 @@
         <font-awesome-icon icon="long-arrow-alt-left" style="font-size: 15px" />
         Back
       </span>
-      <button @click="submitOverview" type="submit" :disabled="!conditions" class="button disabled:opacity-50">
+      <button @click="submitOverview" class="button disabled:opacity-50">
         <font-awesome-icon icon="paper-plane" style="font-size: 15px" />
         Submit
       </button>
@@ -87,7 +87,9 @@ export default {
   methods: {
     submitOverview() {
       let overview = {
-      }
+        ...this.booking,
+        ...this.detail
+      };
       this.$emit("overview-submit", overview);
     },
     backToDetail() {
