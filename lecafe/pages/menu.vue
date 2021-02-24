@@ -1,6 +1,12 @@
 <template>
   <div class="container mx-auto">
-    <le-goback />
+    <div class="flex justify-between items-center">
+      <le-goback style="margin:0"/>
+      <div class="flex items-center">
+        <le-search />
+        <le-cart />
+      </div>
+    </div>
     <le-loading v-if="loading" />
     <div v-else>
       <div class="block-space">

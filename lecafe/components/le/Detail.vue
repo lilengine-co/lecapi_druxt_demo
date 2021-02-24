@@ -1,11 +1,11 @@
 <template>
   <form @submit.prevent="submitDetail" method="post" class="booking-app grid md:grid-cols-2 gap-4 md:gap-8">
     <div class="bg-white shadow-lg p-6 border rounded">
-      <div class="grid gap-6">
+      <div class="grid gap-4">
         <input type="text" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="First name*" name="FNAME" v-model="firstName" required>
         <input type="text" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="Last name*" v-model="lastName" name="LNAME" required>
-        <input type="text" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="Mobile*" v-model="mobile" name="MOBILE" required>
-        <input type="text" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="Email*" v-model="email" name="EMAIL" required>
+        <input type="tel" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="Mobile*" v-model="mobile" name="MOBILE" required>
+        <input type="email" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="Email*" v-model="email" name="EMAIL" required>
         <input type="text" class="mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-200 focus:ring-0 focus:border-black" placeholder="Company name" v-model="companyName" name="COMPANY">
       </div>
     </div>
