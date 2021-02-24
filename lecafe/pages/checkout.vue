@@ -50,11 +50,6 @@
                       </div>
                     </div>
                   </td>
-                  <!-- <td class="text-center md:table-cell">
-                    <span class="text-sm lg:text-base font-medium">
-                      {{ item.quantity }}
-                    </span>
-                  </td> -->
                   <td class="hidden text-right md:table-cell">
                     <span class="text-sm lg:text-base font-medium">
                       ${{ item.variant.price }}

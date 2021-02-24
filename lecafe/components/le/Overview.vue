@@ -21,19 +21,19 @@
         </div>
         <div class="grid grid-cols-2 border-b">
           <span class="font-bold">Email</span>
-          <span>{{ detail.email }}</span>
+          <span class="break-words">{{ detail.email }}</span>
         </div>
         <div class="grid grid-cols-2 border-b">
           <span class="font-bold">Date</span>
-          <span>{{ booking.date }}</span>
-        </div>
-        <div class="grid grid-cols-2 border-b">
-          <span class="font-bold">For</span>
-          <span>{{ booking.persion }}</span>
+          <span>{{ booking.date.toLocaleDateString("au-AU") }}</span>
         </div>
         <div class="grid grid-cols-2 border-b">
           <span class="font-bold">At</span>
           <span>{{ booking.time }}</span>
+        </div>
+        <div class="grid grid-cols-2 border-b">
+          <span class="font-bold">For</span>
+          <span>{{ booking.persion }}</span>
         </div>
         <div class="grid grid-cols-2 border-b">
           <span class="font-bold">In</span>

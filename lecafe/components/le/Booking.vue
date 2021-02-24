@@ -63,7 +63,7 @@
         </div>
       </div>
       <div class="text-right">
-        <button @click="submitBooking" v-if="nextShow" class="button">
+        <button @click="submitBooking" :disabled="!nextShow" class="button disabled:opacity-50">
           Next
           <font-awesome-icon icon="long-arrow-alt-right" style="font-size: 15px" />
         </button>
