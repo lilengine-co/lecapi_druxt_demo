@@ -26,6 +26,7 @@
     "druxt-views": "^0.6.2",
     "nuxt": "^2.14.12",
     "nuxt-shopify": "^1.10.4",
+    "postcss": "^8.2.6",
     "v-calendar": "^2.2.3",
     "vue-easy-lightbox": "^0.14.0",
     "vuex": "^3.6.2"
