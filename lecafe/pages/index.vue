@@ -32,7 +32,7 @@ export default {
           cover: '/images/le-pickup.jpg',
           heading: 'Pickup',
           link: {
-            uri: '/cafe/article/pickup'
+            uri: '/cafe/basic-page/pickup'
           }
         },
         {
