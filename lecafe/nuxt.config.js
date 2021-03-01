@@ -81,10 +81,10 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
   },
-  buildDir: 'dist',
-  target: 'static',
+  // buildDir: 'dist',
+  // target: 'static',
   
-  generate: {
-    fallback: true
-  }
+  // generate: {
+  //   fallback: true
+  // }
 }

@@ -1,12 +1,18 @@
 <template>
-  <div>
-    <div v-if="fields.deck || entity.attributes.title" class="container mx-auto text-center">
-      <h1 v-if="entity.attributes.title" class="page-title text-4xl mb-2">{{ entity.attributes.title }}</h1>
-      <div v-if="fields.deck" class="page__deck text-xl" v-html="fields.deck.data.value"></div>
-      <!-- <slot name="hero" /> -->
-    </div>
-    <div class="mt-10">
-      <slot name="content" />
+  <div v-if="fields">
+    <div class="container mx-auto clear-both">
+      <div v-if="fields.hero" class="artilce__hero text-center lg:float-right lg:max-w-xl lg:pl-16 pb-8">
+        <slot name="hero" />
+      </div>
+      <div class="artilce__body">
+        <div v-if="fields.deck || entity.attributes.title" class="artilce__heading">
+          <h1 v-if="entity.attributes.title" class="page-title text-4xl mb-2">{{ entity.attributes.title }}</h1>
+          <div v-if="fields.deck" class="page__deck text-xl" v-html="fields.deck.data.value"></div>
+        </div>
+        <div class="artilce__content">
+          <slot name="content" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
