@@ -1,5 +1,6 @@
 <template>
   <div class="container mx-auto clear-both">
+    <le-goback class="mb-6"/>
     <div v-if="fields.hero" class="artilce__hero text-center lg:float-right lg:max-w-xl lg:pl-16 pb-8">
       <slot name="hero" />
     </div>

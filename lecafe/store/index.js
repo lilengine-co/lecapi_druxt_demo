@@ -53,12 +53,12 @@ export const actions = {
     commit('setLoading', true);
     this.$shopify.collection.fetchWithProducts(collectionId).then(collection => {
       // Do something with the collection
-      let collectionDetail = {
-        id: collection.id,
-        title: collection.title,
-        products: convertToCards(collection.products, 'product')
-      };
-      commit('setCollection', collectionDetail);
+      // let collectionDetail = {
+      //   id: collection.id,
+      //   title: collection.title,
+      //   products: convertToCards(collection.products, 'product')
+      // };
+      commit('setCollection', collection);
       commit('setLoading', false);
     });    
   },

@@ -1,5 +1,6 @@
 <template>
   <div class="container mx-auto">
+    <le-goback class="mb-6" />
     <div class="block-space">
       <ul class=" grid gap-4 lg:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <li class="card__item" v-for="item in menus" :key="item.id">
@@ -32,7 +33,7 @@ export default {
           cover: '/images/le-drink.jpg',
           heading: 'Non-alcoholic drink',
           link: {
-            uri: '/non-alcoholic'
+            uri: '/coming'
           }
         },
         {
@@ -46,7 +47,7 @@ export default {
           cover: '/images/le-drink.jpg',
           heading: 'Alcoholic drink',
           link: {
-            uri: '/alcoholic'
+            uri: '/coming'
           }
         },
       ],

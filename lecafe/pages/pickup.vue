@@ -28,7 +28,7 @@ export default {
   },
   data: () => (
     {
-      pageTitle: "Catering",
+      pageTitle: "Takeaway Menu",
     }
   ),
   methods: {
@@ -42,7 +42,7 @@ export default {
     'collection'
   ]),
   async mounted () {
-    let collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIzNTU5OTAwMzgxMQ==';
+    let collectionId = 'Z2lkOi8vc2hvcGlmeS9Db2xsZWN0aW9uLzIzNTYwMTA2ODE5NQ==';
     this.fetchCollection(collectionId);
   },
 }

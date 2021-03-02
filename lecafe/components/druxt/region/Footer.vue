@@ -1,7 +1,7 @@
 <template>
   <div class="footer">
     <div class="container mx-auto">
-      <div class="footer__grid grid md:grid-cols-3 gap-10 md:gap-20">
+      <div class="footer__grid grid md:grid-cols-3 gap-10 md:gap-20 pb-6 md:pb-16">
         <div class="footer__col">
           <div class="map-block">
             <iframe class="max-w-full w-full" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13020.001335105675!2d149.1813514!3d-35.3308132!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x10d080a213e14342!2sPlumb%20on%20Tennant!5e0!3m2!1sen!2sau!4v1614558406331!5m2!1sen!2sau" width="468" height="200" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
@@ -18,7 +18,7 @@
                 </div>
                 <div>
                   <h3>Thurs - Sun</h3>
-                  <span class="font-light">9am - 4pm</span>
+                  <span class="font-light">7:30am - 4pm</span>
                 </div>
               </div>
             </div>
@@ -49,16 +49,16 @@
                   <font-awesome-icon :icon="['fab', 'twitter']" style="font-size: 30px"/>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="#" class="hover:text-yellow-700 transition-all duration-500">
                   <font-awesome-icon :icon="['fab', 'youtube']" style="font-size: 30px"/>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
       </div>
-      <div class="my-10 md:my-20 text-center opacity-70">
+      <div class="my-10 md:my-20 text-center opacity-70 hidden">
         © 2021 LeCafé
       </div>
     </div>

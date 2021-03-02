@@ -32,7 +32,7 @@ export default {
           cover: '/images/le-pickup.jpg',
           heading: 'Pickup',
           link: {
-            uri: '/cafe/basic-page/pickup'
+            uri: '/pickup'
           }
         },
         {
@@ -53,21 +53,21 @@ export default {
           cover: '/images/le-drink.jpg',
           heading: 'Hamper',
           link: {
-            uri: '/hamper'
+            uri: '/coming'
           }
         },
         {
           cover: '/images/le-venue.jpg',
           heading: 'Venue',
           link: {
-            uri: '/venue'
+            uri: '/coming'
           }
         },
         {
-          cover: '/images/le-venue.jpg',
+          cover: '/images/le-pantry.jpg',
           heading: 'Pantry',
           link: {
-            uri: '/pantry'
+            uri: '/coming'
           }
         },
       ],

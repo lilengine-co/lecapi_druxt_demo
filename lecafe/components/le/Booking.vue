@@ -122,7 +122,7 @@ export default {
       sectionSelected: '',
       sectionList: [
         "Inside",
-        "Yard (Outside)",
+        "Courtyard (Outside)",
         "Any"
       ],
       nextShow: false,

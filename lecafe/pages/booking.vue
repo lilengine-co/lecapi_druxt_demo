@@ -24,7 +24,7 @@
       <div v-show="steps[2].status == 'done'" class="max-w-xl mx-auto">
         <h2 class="text-2xl px-2 mb-4 border-b">Thank you</h2>
         <div class="mb-2">
-          Thanks for your booking, we can't wait to see you. We've sent you an email with the details of this booking. Please be on time as we will give the table away if you are more than 15 minutes late.
+          Thanks for your booking, we can't wait to see you. We've sent you an email with the details of this booking. Please let us know if you cant make it.
         </div>
         <div class="text-lg">Kind regards Plumb on Tennant</div>
         <span class="button inline-block mx-auto my-6" @click="reloadPage">Book another table</span>
