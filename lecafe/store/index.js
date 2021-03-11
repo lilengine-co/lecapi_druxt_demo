@@ -1,33 +1,3 @@
-function convertToCards(items, type) {
-  let cards = [];
-  for (let i=0; i<items.length; i++) {
-    let item = items[i];
-    let itemID = item.id;
-    let heading = item.title;
-    let price = item.variants ? '$' + item.variants[0].price : '';
-    let cover = item.image ? item.image.src : item.images[0].src;
-    let images = item.images ? item.images : [];
-    let link = {
-      title: "See more",
-      uri: '/' + type + '/' + itemID
-    };
-
-    let isAvailable = (type == 'product') ? item.availableForSale : true;
-    if(isAvailable && (heading != 'Home page 1')) {
-      cards.push({
-        id: itemID,
-        props: false,
-        heading: heading,
-        content: price,
-        link: link,
-        cover: cover,
-        images: images
-      })
-    }
-  }
-  return cards;
-}
-
 export const state = () => ({
   collections: [],
   collection: {},
@@ -39,9 +9,16 @@ export const state = () => ({
   checkout: {},
   totalCartItems: 0,
   searchResults: [],
+  locations: [],
 });
 
 export const actions = {
+  async nuxtServerInit ({ commit }, { app }) {
+    const locations = await app.$squareClient.locationsApi.listLocations();
+    console.log("Location Square");
+    console.log(locations.result);
+    commit('setLocations', locations.result);
+  },
   async fetchAllCollections ({ commit }) {
     commit('setLoading', true);
     this.$shopify.collection.fetchAllWithProducts().then(collections => {
@@ -52,12 +29,6 @@ export const actions = {
   async fetchCollection ({ commit }, collectionId) {
     commit('setLoading', true);
     this.$shopify.collection.fetchWithProducts(collectionId).then(collection => {
-      // Do something with the collection
-      // let collectionDetail = {
-      //   id: collection.id,
-      //   title: collection.title,
-      //   products: convertToCards(collection.products, 'product')
-      // };
       commit('setCollection', collection);
       commit('setLoading', false);
     });    
@@ -65,7 +36,6 @@ export const actions = {
   async fetchAllProducts ({ commit }) {
     commit('setLoading', true);
     const products = await this.$shopify.product.fetchAll();
-    const productItems = convertToCards(products, 'product');
     commit('setProducts', productItems);
     commit('setLoading', false);
   },
@@ -333,6 +303,7 @@ export const getters = {
   loading: (state) => state.loading,
   loadingSearch: (state) => state.loadingSearch,
   searchResults: (state) => state.searchResults,
+  locations: (state) => state.locations
 }
 
 export const mutations = {
@@ -349,5 +320,6 @@ export const mutations = {
     state.totalCartItems = totalCartItems;
     state.checkout = checkout;
   },
-  setSearchResults: (state, searchResults) => (state.searchResults = searchResults)
+  setSearchResults: (state, searchResults) => (state.searchResults = searchResults),
+  setLocations: (state, locations) => (state.locations = locations),
 }

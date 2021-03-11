@@ -34,6 +34,9 @@ export default {
     {
       src: '~/plugins/v-calendar.js',
       ssr: false
+    },
+    {
+      src: '~/plugins/square.js'
     }
   ],
 
